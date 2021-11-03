@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/iHome"
+            android:title="Trang Chủ" />
+
+        <item
+            android:id="@+id/iNguoiDung"
+            android:title="Người Dùng"/>
+
+        <item
+            android:id="@+id/iKhoVideo"
+            android:title="Kho Video"/>
+
+        <item
+            android:id="@+id/iGoi"
+            android:title="Mua gói thành viên"/>
+
+        <item
+            android:id="@+id/iGopy"
+            android:title="Góp Ý"/>
+
+        <item
+            android:id="@+id/iCaiDat"
+            android:title="Cài Đặt"/>
+
+        <item
+            android:id="@+id/iDangXuat"
+            android:title="Đăng Xuất"/>
+
+    </group>
+
+</menu>

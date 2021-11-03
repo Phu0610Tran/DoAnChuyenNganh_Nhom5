@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDF1F3"
+    tools:context=".Activity.GopY">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2181a0"
+            >
+            <TextView
+                android:layout_marginTop="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="GÓP Ý"
+                android:textStyle="bold"
+                android:textColorHint="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/imgbtn_quaylai_gy"
+                android:layout_width="35dp"
+                android:layout_height="25dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/quaylai"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        </androidx.appcompat.widget.Toolbar>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+            <EditText
+                android:id="@+id/edt_taikhoan_gy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tài khoản"
+                android:textSize="20sp"
+                android:inputType="text"/>
+
+            <EditText
+                android:id="@+id/edt_sdt_gy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="SDT"
+                android:textSize="20sp"
+                android:inputType="text"/>
+
+            <EditText
+                android:id="@+id/edt_nd_gy"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:gravity="start"
+                android:textSize="20dp"
+                android:hint="Nội dung"
+                android:inputType="textMultiLine" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <Button
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/btn_capnhat_cn"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Gửi"
+                android:textColor="#FFFF"
+                android:textStyle="bold"
+                android:background="#2181a0"/>
+            <Button
+                android:id="@+id/btn_doimatkhau_cn"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Chat"
+                android:textColor="#FFFF"
+                android:textStyle="bold"
+                android:background="#2181a0"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+</LinearLayout>
