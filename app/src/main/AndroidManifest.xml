@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAnChuyenNganh_Nhom5">
         <activity
-            android:name=".Activity.Dangnhap"
+            android:name=".Activity.PlayvideoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Test.myvideo"
             android:exported="true" />
         <activity
             android:name=".Activity.Goithanhvien"
@@ -24,19 +27,19 @@
             android:name=".Activity.Khovideo"
             android:exported="true" />
         <activity
+            android:name=".Activity.Dangnhap"
+            android:exported="true" />
+        <activity
+            android:name=".Test.ChinhSuaA"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.CapNhat"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.DangKy"
+            android:exported="true" />
+        <activity
             android:name=".Activity.Home"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.ChinhSuaActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.Capnhat"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.myvideo"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -25,7 +25,7 @@ import com.example.doanchuyennganh_nhom5.model.Account;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Capnhat extends AppCompatActivity {
+public class CapNhat extends AppCompatActivity {
 
     EditText edthoten, edtngaythangnamsinh, edtgioitinh, edtsodienthoai, edtmail;
     Button btncapnhat;
@@ -64,12 +64,12 @@ public class Capnhat extends AppCompatActivity {
         builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(Capnhat.this,"ssssss",Toast.LENGTH_LONG).show();
+                Toast.makeText(CapNhat.this,"ssssss",Toast.LENGTH_LONG).show();
             }
         }).setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(Capnhat.this,"ssssss",Toast.LENGTH_LONG).show();
+                Toast.makeText(CapNhat.this,"ssssss",Toast.LENGTH_LONG).show();
             }
         });
         builder.show();
@@ -108,14 +108,16 @@ public class Capnhat extends AppCompatActivity {
                 }
                 else{
                     btncapnhat.setText("Cập nhật");
+                    CapNhatTaiKhoan(url);
+//
+//                    String hoten = edthoten.getText().toString().trim();
+//                    String ngaythangnamsinh = edtngaythangnamsinh.getText().toString().trim();
+//                      String gioitinh = edtgioitinh.getText().toString().trim();
+//                    String sodienthoai = edtsodienthoai.getText().toString().trim();
+//                    String mail = edtmail.getText().toString().trim();
                 }
 
-                String hoten = edthoten.getText().toString().trim();
-                String ngaythangnamsinh = edtngaythangnamsinh.getText().toString().trim();
-//                String gioitinh = edtgioitinh.getText().toString().trim();
-                String sodienthoai = edtsodienthoai.getText().toString().trim();
-                String mail = edtmail.getText().toString().trim();
-                CapNhatTaiKhoan(url);
+
             }
         });
     }
@@ -126,22 +128,21 @@ public class Capnhat extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
                         if (response.trim().equals("success")){
-
-
                             // GetData(url);
-                            Toast.makeText(Capnhat.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CapNhat.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
 
                         }
                         else{
-                            Toast.makeText(Capnhat.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CapNhat.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Capnhat.this, "Vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CapNhat.this, "Vui lòng thử lại", Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
@@ -149,7 +150,7 @@ public class Capnhat extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 params.put("IDTK",account.getIdtk());
-                params.put("Hovaten", edthoten.getText().toString().trim());
+                params.put("hovaten", edthoten.getText().toString().trim());
                 params.put("ngaythangnamsinh", edtngaythangnamsinh.getText().toString().trim());
 //                params.put("gioitinh", edtgioitinh.getText().toString().trim());
                 params.put("Sdt", edtsodienthoai.getText().toString().trim());

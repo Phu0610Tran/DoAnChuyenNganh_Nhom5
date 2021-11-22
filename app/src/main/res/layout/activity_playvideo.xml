@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/myvideo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"/>
+    <TextView
+        android:id="@+id/txt_tieude_playvideo"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tiêu đề của video : Ứng dụng xem video trực tuyến"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/txt_luotxem_playvide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lượt xem"
+        android:padding="10dp"
+        android:textSize="15sp"/>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/img_like_playvideo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/like"/>
+        <TextView
+            android:id="@+id/txt_luotlike_playvide"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lượt like"
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+        <ImageView
+            android:id="@+id/img_dislike_playvideo"
+            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/dislike"/>
+        <TextView
+            android:id="@+id/txt_luotdislike_playvide"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lượt like"
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/img_luuVideo_playvideo"
+            android:layout_marginLeft="80dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/save"/>
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lưu"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txt_noidung_playvideo"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="nội dung video"
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/txt_xemthem_playvideo"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xem thêm"/>
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/down"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:text="Nhập nội dung bình luận"
+            android:textSize="15sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Bình Luận"
+            android:textSize="10sp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

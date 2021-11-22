@@ -21,7 +21,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.doanchuyennganh_nhom5.R;
-import com.example.doanchuyennganh_nhom5.model.DangKy;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,12 +28,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity {
-    public static final String TAG = RegisterActivity.class.getSimpleName();
+public class DangKy extends AppCompatActivity {
+    public static final String TAG = DangKy.class.getSimpleName();
 
-    private EditText edtmail;
-    private EditText edtPassWord;
-    private EditText edtPhone;
+    private EditText edtmail, edtPassWord, edtPhone;
     private Button btnRegister;
     private ProgressDialog pDialog;
     private ImageView imgquaylai;
@@ -50,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout);
+        setContentView(R.layout.activity_dangky);
         addControls();
         addEvents();
     }
@@ -59,7 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Get data input
-
 
                 String mail= edtmail.getText().toString().trim();
                 String mk = edtPassWord.getText().toString().trim();
@@ -71,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         imgquaylai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this,Dangnhap.class);
+                Intent intent = new Intent(DangKy.this,Dangnhap.class);
                 startActivity(intent);
             }
         });
@@ -102,16 +98,18 @@ public class RegisterActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                 if (jsonObject.getInt("success") == 1) {
-                                    DangKy dangKy = new DangKy();
+                                    com.example.doanchuyennganh_nhom5.model.DangKy dangKy = new com.example.doanchuyennganh_nhom5.model.DangKy();
                                     dangKy.setSdt(jsonObject.getString("Sdt"));
                                     message = jsonObject.getString("message");
-                                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+
+                                    Toast.makeText(DangKy.this, message, Toast.LENGTH_LONG).show();
                                     //Start LoginActivity
-                                    Intent intent = new Intent(RegisterActivity.this, Dangnhap.class);
+                                    Intent intent = new Intent(DangKy.this, Dangnhap.class);
                                     startActivity(intent);
                                 } else {
                                     message = jsonObject.getString("message");
-                                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+
+                                    Toast.makeText(DangKy.this, message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException error) {
                                 VolleyLog.d(TAG, "Error: " + error.getMessage());

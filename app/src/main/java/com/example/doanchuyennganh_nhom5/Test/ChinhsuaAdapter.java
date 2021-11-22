@@ -1,4 +1,4 @@
-package com.example.doanchuyennganh_nhom5.Adapter;
+package com.example.doanchuyennganh_nhom5.Test;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.doanchuyennganh_nhom5.Activity.Capnhat;
+import com.example.doanchuyennganh_nhom5.Activity.CapNhat;
 import com.example.doanchuyennganh_nhom5.R;
-import com.example.doanchuyennganh_nhom5.model.Chinhsua;
+import com.example.doanchuyennganh_nhom5.Test.Chinhsua;
 
 import java.util.List;
 
@@ -78,7 +78,7 @@ public class ChinhsuaAdapter extends BaseAdapter {
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, Capnhat.class);
+                Intent intent = new Intent(context, CapNhat.class);
                 intent.putExtra("data", chinhSua);
                 context.startActivity(intent);
             }

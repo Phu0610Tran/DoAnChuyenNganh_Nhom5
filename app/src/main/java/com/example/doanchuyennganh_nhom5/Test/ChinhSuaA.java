@@ -1,4 +1,4 @@
-package com.example.doanchuyennganh_nhom5.Activity;
+package com.example.doanchuyennganh_nhom5.Test;
 
 import android.os.Bundle;
 import android.widget.ListView;
@@ -13,9 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.doanchuyennganh_nhom5.Adapter.ChinhsuaAdapter;
 import com.example.doanchuyennganh_nhom5.R;
-import com.example.doanchuyennganh_nhom5.model.Chinhsua;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ChinhSuaActivity extends AppCompatActivity {
+public class ChinhSuaA extends AppCompatActivity {
 
     String urlGetData = "https://doanchuyennghanh.000webhostapp.com/getdata.php";
 
@@ -37,7 +35,7 @@ public class ChinhSuaActivity extends AppCompatActivity {
 
         lv_Chinhsua = (ListView) findViewById(R.id.lv_chinhsua);
         arrayList = new ArrayList<>();
-        adapter = new ChinhsuaAdapter(ChinhSuaActivity.this,R.layout.activity_chinh_sua, arrayList);
+        adapter = new ChinhsuaAdapter(ChinhSuaA.this,R.layout.activity_chinh_sua, arrayList);
         lv_Chinhsua.setAdapter(adapter);
 
         GetData(urlGetData);
@@ -72,7 +70,7 @@ public class ChinhSuaActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ChinhSuaActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChinhSuaA.this, "Lỗi", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

@@ -1,4 +1,4 @@
-package com.example.doanchuyennganh_nhom5;
+package com.example.doanchuyennganh_nhom5.Test;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doanchuyennganh_nhom5.R;
 import com.example.doanchuyennganh_nhom5.model.Account;
 
 public class ResultLogin extends AppCompatActivity {

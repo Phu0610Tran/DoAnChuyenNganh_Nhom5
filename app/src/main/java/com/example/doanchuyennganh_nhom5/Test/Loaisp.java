@@ -1,4 +1,4 @@
-package com.example.doanchuyennganh_nhom5.model;
+package com.example.doanchuyennganh_nhom5.Test;
 
 public class Loaisp {
     public int Id;

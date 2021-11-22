@@ -1,4 +1,4 @@
-package com.example.doanchuyennganh_nhom5.Adapter;
+package com.example.doanchuyennganh_nhom5.Test;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.doanchuyennganh_nhom5.R;
-import com.example.doanchuyennganh_nhom5.model.Loaisp;
 
 import java.util.ArrayList;
 

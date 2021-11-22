@@ -63,7 +63,7 @@ public class Dangnhap extends AppCompatActivity {
         txtDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentdk = new Intent(Dangnhap.this, RegisterActivity.class);
+                Intent intentdk = new Intent(Dangnhap.this, DangKy.class);
                 startActivity(intentdk);
             }
         });
@@ -109,7 +109,7 @@ public class Dangnhap extends AppCompatActivity {
 
                                     Toast.makeText(Dangnhap.this, message, Toast.LENGTH_SHORT).show();
 
-                                    Intent intent = new Intent(Dangnhap.this, Capnhat.class);
+                                    Intent intent = new Intent(Dangnhap.this, CapNhat.class);
                                     intent.putExtra("login", account);
                                     startActivity(intent);
 
