@@ -69,24 +69,26 @@
                 android:inputType="textMultiLine" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
-            >
+            android:gravity="center">
+
             <Button
                 android:layout_marginHorizontal="10dp"
-                android:id="@+id/btn_capnhat_cn"
+                android:id="@+id/btn_guigopy"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:text="Gửi"
                 android:textColor="#FFFF"
                 android:textStyle="bold"
                 android:background="#2181a0"/>
+
             <Button
-                android:id="@+id/btn_doimatkhau_cn"
+                android:id="@+id/btn_hotrokhachhang"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:text="Chat"
@@ -96,11 +98,6 @@
 
         </LinearLayout>
 
-
-
-
-
-
-
     </LinearLayout>
+
 </LinearLayout>
