@@ -1,15 +1,16 @@
-package com.example.doanchuyennganh_nhom5.model;
+package com.example.doanchuyennganh_nhom5.d;
 
 import java.io.Serializable;
 import java.sql.Date;
 
 public class Account implements Serializable {
-    private String Idtk, Sdt, Hinhdaidien, Gmail, Hovaten;
+    private int Idtk;
+    private String Sdt, Hinhdaidien, Gmail, Hovaten;
     private int Quyen;
     private String LoaiTK;
     private Date Ngaysinh;
 
-    public Account(String idtk, String sdt, String hinhdaidien, String gmail, String hovaten, int quyen, String loaiTK, Date ngaysinh) {
+    public Account(int idtk, String sdt, String hinhdaidien, String gmail, String hovaten, int quyen, String loaiTK, Date ngaysinh) {
         Idtk = idtk;
         Sdt = sdt;
         Hinhdaidien = hinhdaidien;
@@ -23,11 +24,11 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public String getIdtk() {
+    public int getIdtk() {
         return Idtk;
     }
 
-    public void setIdtk(String idtk) {
+    public void setIdtk(int idtk) {
         Idtk = idtk;
     }
 

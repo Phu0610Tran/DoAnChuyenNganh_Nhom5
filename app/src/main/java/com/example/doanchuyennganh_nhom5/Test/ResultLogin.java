@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doanchuyennganh_nhom5.R;
-import com.example.doanchuyennganh_nhom5.model.Account;
+import com.example.doanchuyennganh_nhom5.d.Account;
 
 public class ResultLogin extends AppCompatActivity {
     private TextView txtUserName, txtQuyen, txtLoaiTK;

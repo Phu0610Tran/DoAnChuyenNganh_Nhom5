@@ -82,6 +82,7 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    Log.e("d","d");
                     JSONArray jsonItems = response.getJSONArray("items");
                     String title = ""; String url = ""; String idVideo="";
                     ArrayList<Video> videoYouTubeArrayList = new ArrayList<>();
@@ -97,7 +98,7 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
 
                         JSONObject jsonResourceID = jsonSnippet.getJSONObject("resourceId");
                         idVideo = jsonResourceID.getString("videoId");
-
+                        Log.e("T", title);
                         videoYouTubeArrayList.add( new Video(title,url,idVideo));
                     }
                     videoAdapter.setListVideo(videoYouTubeArrayList);

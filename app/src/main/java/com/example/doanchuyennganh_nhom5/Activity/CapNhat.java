@@ -12,18 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.doanchuyennganh_nhom5.R;
-import com.example.doanchuyennganh_nhom5.model.Account;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.example.doanchuyennganh_nhom5.d.Account;
 
 public class CapNhat extends AppCompatActivity {
 
@@ -108,7 +98,7 @@ public class CapNhat extends AppCompatActivity {
                 }
                 else{
                     btncapnhat.setText("Cập nhật");
-                    CapNhatTaiKhoan(url);
+                    //CapNhatTaiKhoan(url);
 //
 //                    String hoten = edthoten.getText().toString().trim();
 //                    String ngaythangnamsinh = edtngaythangnamsinh.getText().toString().trim();
@@ -122,43 +112,43 @@ public class CapNhat extends AppCompatActivity {
         });
     }
 
-    private void CapNhatTaiKhoan(final String url){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        if (response.trim().equals("success")){
-                            // GetData(url);
-                            Toast.makeText(CapNhat.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-
-                        }
-                        else{
-                            Toast.makeText(CapNhat.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(CapNhat.this, "Vui lòng thử lại", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                params.put("IDTK",account.getIdtk());
-                params.put("hovaten", edthoten.getText().toString().trim());
-                params.put("ngaythangnamsinh", edtngaythangnamsinh.getText().toString().trim());
-//                params.put("gioitinh", edtgioitinh.getText().toString().trim());
-                params.put("Sdt", edtsodienthoai.getText().toString().trim());
-                params.put("Mail", edtmail.getText().toString().trim());
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
+//    private void CapNhatTaiKhoan(final String url){
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//
+//                        if (response.trim().equals("success")){
+//                            // GetData(url);
+//                            Toast.makeText(CapNhat.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                        else{
+//                            Toast.makeText(CapNhat.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(CapNhat.this, "Vui lòng thử lại", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//        ){
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String,String> params = new HashMap<>();
+//                params.put("IDTK",account.getIdtk());
+//                params.put("hovaten", edthoten.getText().toString().trim());
+//                params.put("ngaythangnamsinh", edtngaythangnamsinh.getText().toString().trim());
+////                params.put("gioitinh", edtgioitinh.getText().toString().trim());
+//                params.put("Sdt", edtsodienthoai.getText().toString().trim());
+//                params.put("Mail", edtmail.getText().toString().trim());
+//                return params;
+//            }
+//        };
+//        requestQueue.add(stringRequest);
+//    }
 
 }

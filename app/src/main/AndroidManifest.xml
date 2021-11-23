@@ -27,7 +27,7 @@
             android:name=".Activity.Goithanhvien"
             android:exported="true" />
         <activity
-            android:name=".Activity.Home"
+            android:name=".Activity.GopY"
             android:exported="true" />
         <activity
             android:name=".Activity.Khovideo"
@@ -45,7 +45,7 @@
             android:name=".Activity.DangKy"
             android:exported="true" />
         <activity
-            android:name=".Activity.GopY"
+            android:name=".Activity.Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
