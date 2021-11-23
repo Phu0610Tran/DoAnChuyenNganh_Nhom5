@@ -64,23 +64,39 @@ public class DangKy extends AppCompatActivity {
                 String nlmatkhau = edtNhaplaipassword.getText().toString().trim();
 
                 if (edtPhone.getText().length() != 0 && edtPassWord.getText().length() != 0
-                        && edtNhaplaipassword.getText().length() != 0 && edtmail.getText().length() != 0);
-                if(dao.isTonTaiTK(sdt)){
-                    if(mk.equals(nlmatkhau)){
-                        dao.TaoTK(
-                                sdt,mail,mk,"USER","THUONG"
-                        );
+                        && edtNhaplaipassword.getText().length() != 0 && edtmail.getText().length() != 0){
+                    if(dao.isTonTaiTK(sdt) == false){
+                        if(mk.equals(nlmatkhau)){
+                            dao.TaoTK(
+                                    sdt,mail,mk,"USER","THUONG"
+                            );
+                            if(dao.isTonTaiTK(sdt)){
+                                Toast.makeText(DangKy.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(DangKy.this, Dangnhap.class);
+                                startActivity(intent);
+                            }else {
+                                Toast.makeText(DangKy.this, "Đăng ký thất bại. Vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else {
+                            edtNhaplaipassword.requestFocus();
+                            Toast.makeText(DangKy.this, "Nhập lại mật khẩu phải trùng với mật khẩu", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(DangKy.this, "Số điện thoại đã được sử dụng. Vui lòng đăng ký số điện thoại khác", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(DangKy.this, "Vui lòng điền đầy đủ các trường", Toast.LENGTH_SHORT).show();
                 }
+
                 //Call method register
                 //registerUser(mail, sdt, mk,0,"0");
-            }
+                }
         });
         imgquaylai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DangKy.this,Dangnhap.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
     }

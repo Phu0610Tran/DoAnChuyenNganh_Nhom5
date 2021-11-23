@@ -5,14 +5,15 @@ import java.util.Date;
 
 public class TaiKhoan implements Serializable {
     private int IDTK;
-    private String Maill, SDT, MatKhau, Quyen, LoaiTK,HinhTK, HovaTen,GioiTinh;
+    private String Maill, SDT, MatKhau, Quyen, LoaiTK, HovaTen,GioiTinh;
+    private byte[] HinhTK;
     private String NgaySinh;
 
     public TaiKhoan() {
         IDTK = -1;
     }
 
-    public TaiKhoan(int IDTK, String maill, String SDT, String matKhau, String quyen, String loaiTK, String hinhTK, String hovaTen,String ngaySinh, String gioiTinh) {
+    public TaiKhoan(int IDTK, String maill, String SDT, String matKhau, String quyen, String loaiTK, byte[] hinhTK, String hovaTen,String ngaySinh, String gioiTinh) {
         this.IDTK = IDTK;
         this.Maill = maill;
         this.SDT = SDT;
@@ -73,11 +74,11 @@ public class TaiKhoan implements Serializable {
         LoaiTK = loaiTK;
     }
 
-    public String getHinhTK() {
+    public byte[] getHinhTK() {
         return HinhTK;
     }
 
-    public void setHinhTK(String hinhTK) {
+    public void setHinhTK(byte[]hinhTK) {
         HinhTK = hinhTK;
     }
 

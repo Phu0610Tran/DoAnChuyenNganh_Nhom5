@@ -1,7 +1,6 @@
 package com.example.doanchuyennganh_nhom5.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,13 +83,16 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
                 try {
                     Log.e("d","d");
                     JSONArray jsonItems = response.getJSONArray("items");
-                    String title = ""; String url = ""; String idVideo="";
+                    String title = ""; String url = ""; String idVideo=""; String description="";String videoOwnerChannelTitle="";
+
                     ArrayList<Video> videoYouTubeArrayList = new ArrayList<>();
                     for (int i = 0; i < jsonItems.length(); i++)
                     {
                         JSONObject jsonItem = jsonItems.getJSONObject(i);
                         JSONObject jsonSnippet = jsonItem.getJSONObject("snippet");
                         title = jsonSnippet.getString("title");
+                        description = jsonSnippet.getString("description");
+                        videoOwnerChannelTitle = jsonSnippet.getString("videoOwnerChannelTitle");
 
                         JSONObject jsonThumbnail = jsonSnippet.getJSONObject("thumbnails");
                         JSONObject jsonMedium = jsonThumbnail.getJSONObject("medium");
@@ -99,7 +101,8 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
                         JSONObject jsonResourceID = jsonSnippet.getJSONObject("resourceId");
                         idVideo = jsonResourceID.getString("videoId");
                         Log.e("T", title);
-                        videoYouTubeArrayList.add( new Video(title,url,idVideo));
+
+                        videoYouTubeArrayList.add( new Video(idVideo, url, title, description, videoOwnerChannelTitle ));
                     }
                     videoAdapter.setListVideo(videoYouTubeArrayList);
                     videoAdapter.notifyDataSetChanged();

@@ -66,9 +66,9 @@
 
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Rec_khovideo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#6A1D1D"
 
                     />
 

@@ -12,7 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanchuyennganh_nhom5.R;
-import com.example.doanchuyennganh_nhom5.model.Video;
+import com.example.doanchuyennganh_nhom5.d.Video;
 
 import java.util.List;
 

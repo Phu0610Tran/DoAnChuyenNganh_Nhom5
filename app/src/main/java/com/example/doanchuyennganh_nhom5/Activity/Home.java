@@ -7,35 +7,22 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.doanchuyennganh_nhom5.Adapter.DanhMucAdapter;
 import com.example.doanchuyennganh_nhom5.DataBase.DAO;
 import com.example.doanchuyennganh_nhom5.Test.LoaispAdapter;
 import com.example.doanchuyennganh_nhom5.R;
-import com.example.doanchuyennganh_nhom5.Test.Loaisp;
 import com.example.doanchuyennganh_nhom5.model.DanhMuc;
 import com.example.doanchuyennganh_nhom5.model.TaiKhoan;
-import com.example.doanchuyennganh_nhom5.model.Video;
+import com.example.doanchuyennganh_nhom5.d.Video;
 import com.google.android.material.navigation.NavigationView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
