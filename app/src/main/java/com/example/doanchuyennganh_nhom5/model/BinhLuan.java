@@ -6,12 +6,12 @@ public class BinhLuan {
     Integer TaiKhoanBL;
     byte[] HinhBL;
     String NoidungBL;
-    Date ThoiGianBL;
+    String ThoiGianBL;
 
     public BinhLuan() {
     }
 
-    public BinhLuan(Integer taiKhoanBL, byte[] hinhBL, String noidungBL, Date thoiGianBL) {
+    public BinhLuan(Integer taiKhoanBL, byte[] hinhBL, String noidungBL, String thoiGianBL) {
         TaiKhoanBL = taiKhoanBL;
         HinhBL = hinhBL;
         NoidungBL = noidungBL;
@@ -42,11 +42,11 @@ public class BinhLuan {
         NoidungBL = noidungBL;
     }
 
-    public Date getThoiGianBL() {
+    public String getThoiGianBL() {
         return ThoiGianBL;
     }
 
-    public void setThoiGianBL(Date thoiGianBL) {
+    public void setThoiGianBL(String thoiGianBL) {
         ThoiGianBL = thoiGianBL;
     }
 }

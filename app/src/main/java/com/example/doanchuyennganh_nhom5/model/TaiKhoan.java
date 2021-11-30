@@ -13,7 +13,7 @@ public class TaiKhoan implements Serializable {
         IDTK = -1;
     }
 
-    public TaiKhoan(int IDTK, String maill, String SDT, String matKhau, String quyen, String loaiTK, byte[] hinhTK, String hovaTen,String ngaySinh, String gioiTinh) {
+    public TaiKhoan(int IDTK, String maill, String SDT, String matKhau, String quyen, String loaiTK, byte[] hinhTK, String hovaTen,String ngaySinh) {
         this.IDTK = IDTK;
         this.Maill = maill;
         this.SDT = SDT;
@@ -22,7 +22,6 @@ public class TaiKhoan implements Serializable {
         this.LoaiTK = loaiTK;
         this.HinhTK = hinhTK;
         this.HovaTen = hovaTen;
-        this.GioiTinh = gioiTinh;
         this.NgaySinh = ngaySinh;
     }
 

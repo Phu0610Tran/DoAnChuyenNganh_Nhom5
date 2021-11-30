@@ -9,7 +9,6 @@ public class Account implements Serializable {
     private int Quyen;
     private String LoaiTK;
     private Date Ngaysinh;
-
     public Account(int idtk, String sdt, String hinhdaidien, String gmail, String hovaten, int quyen, String loaiTK, Date ngaysinh) {
         Idtk = idtk;
         Sdt = sdt;
@@ -20,7 +19,6 @@ public class Account implements Serializable {
         LoaiTK = loaiTK;
         Ngaysinh = ngaysinh;
     }
-
     public Account() {
     }
 

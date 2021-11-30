@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -29,17 +30,15 @@ import java.util.ArrayList;
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DAO dao;
     public static TaiKhoan taiKhoan = new TaiKhoan();
-    ArrayList mangloaisp;
-    ImageView imageView;
+    ImageView imageView,img_search_home;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     LinearLayout contentView;
-    LoaispAdapter loaispAdapter;
-    ListView listviewmanhinhchinh;
-    RecyclerView mRecyclerView;
+
     private  static ArrayList<Video> x = new ArrayList<>();
-    ArrayList<Video> videoYouTubeArrayList;
     public static String URL_GETJSON = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=";
+    public static String URL_GETJSONALONE = "https://www.googleapis.com/youtube/v3/videos?id=";
+    public static String KET_API_ALONE = "&part=snippet&key=AIzaSyCfbNBRWnZmFFQxpLjtGYxN8W97YRjui8U";
     public static String KEY_API =  "&key=AIzaSyCfbNBRWnZmFFQxpLjtGYxN8W97YRjui8U&maxResults=50";
 
     RecyclerView rec_Chung;
@@ -50,14 +49,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Anhxa();
-dao = new DAO(Home.this);
+        dao = new DAO(Home.this);
         ActionBar();
 
         rec_Chung =findViewById(R.id.rec_Chung);
         ArrayList<Video> videos= new ArrayList<>();
 
-//        videoYouTubeArrayList = new ArrayList<>();
-//        GetJsonYouTube(URL_GETJSON);
         ListCate = new ArrayList<>();
         ListCate.add(new DanhMuc("Hoạt hình","PLiJQ-xWoNAYv39NJXl82yfIMKIOE1eX32"));
         ListCate.add(new DanhMuc("Thể thao","PLiJQ-xWoNAYs0BqMlN6705zsQtMQdDFxr"));
@@ -67,7 +64,12 @@ dao = new DAO(Home.this);
         rec_Chung.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         DanhMucAdapter categoryAdapter = new DanhMucAdapter(this, ListCate);
         rec_Chung.setAdapter(categoryAdapter);
-
+        img_search_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Home.this,TimKiem.class));
+            }
+        });
 
     }
 
@@ -81,6 +83,7 @@ dao = new DAO(Home.this);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.home_nav_view);
         contentView = findViewById(R.id.content_view);
+        img_search_home = findViewById(R.id.img_search_home);
         //mRecyclerView = findViewById(R.id.recV_LoadvieoTC);
 
 
@@ -98,10 +101,6 @@ dao = new DAO(Home.this);
     private void ActionBar() {
 
         navigationView.bringToFront();
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, , "Open Navigation Drawer", "Close Navigation Drawer");
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.iHome);
 
@@ -114,28 +113,8 @@ dao = new DAO(Home.this);
             }
         });
 
-//        animateNavigationDrawer();
 
     }
-
-//    private void animateNavigationDrawer() {
-//        drawerLayout.setScrimColor(getResources().getColor(R.color.teal_700));
-//        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-//            @Override
-//            public void onDrawerSlide(View drawerView, float slideOffset) {
-//                final float diffScaleOffset = slideOffset * (1 - 0.7f);
-//                final float offsetScale = 1 - diffScaleOffset;
-//                contentView.setScaleX(offsetScale);
-//                contentView.setScaleX(offsetScale);
-//
-//                final float xOffset = drawerView.getWidth() * slideOffset;
-//                final float xOffsetDiff = contentView.getWidth() * diffScaleOffset / 2;
-//                final float xTranslation = xOffset - xOffsetDiff;
-//                contentView.setTranslationX(xTranslation);
-//
-//            }
-//        });
-//    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -144,7 +123,12 @@ dao = new DAO(Home.this);
         if (id == R.id.iHome) {
             startActivity(new Intent(this, Home.class));
         }else if (id == R.id.iNguoiDung) {
-            startActivity(new Intent(this, Home.class));
+            if(Home.taiKhoan.getIDTK() != -1){
+                startActivity(new Intent(this, CapNhat.class));
+            }else {
+                startActivity(new Intent(this, Dangnhap.class));
+            }
+
         }else if (id == R.id.iKhoVideo) {
             startActivity(new Intent(this, Khovideo.class));
         }else if (id == R.id.iGoi) {

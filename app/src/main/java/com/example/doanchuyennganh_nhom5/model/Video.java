@@ -9,6 +9,7 @@ public class Video implements Serializable {
     public Video() {
     }
 
+
     public Video(String IDVD, String hinhVD,String tieuDeVD, String noiDungVD, String tacGia){
         this.IDVD = IDVD;
         HinhVD = hinhVD;
@@ -28,6 +29,15 @@ public class Video implements Serializable {
         LuotXem = luotXem;
         Thich = thich;
         KhongThich = khongThich;
+    }
+    public Video(String IDVD, String hinhVD, String thoiGianLoad, String THELOAI, String tieuDeVD, String noiDungVD, String tacGia) {
+        this.IDVD = IDVD;
+        HinhVD = hinhVD;
+        ThoiGianLoad = thoiGianLoad;
+        this.THELOAI = THELOAI;
+        TieuDeVD = tieuDeVD;
+        NoiDungVD = noiDungVD;
+        TacGia = tacGia;
     }
 
     public String getIDVD() {

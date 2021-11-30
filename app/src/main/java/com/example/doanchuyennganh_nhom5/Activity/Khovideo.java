@@ -3,6 +3,7 @@ package com.example.doanchuyennganh_nhom5.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,8 @@ public class Khovideo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_khovideo);
         Rec_khovideo =findViewById(R.id.Rec_khovideo);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         videoArrayList = new ArrayList<>();
         dao = new DAO(Khovideo.this);
         videoArrayList = dao.ListLuuVideo(Home.taiKhoan.getIDTK());
@@ -44,8 +47,4 @@ public class Khovideo extends AppCompatActivity {
         Rec_khovideo.setAdapter(adapter);
 
     }
-
-
-
-
 }

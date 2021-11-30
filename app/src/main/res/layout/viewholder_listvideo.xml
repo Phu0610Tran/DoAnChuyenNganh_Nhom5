@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+
+            android:background="#00BCD4"
+            android:scaleType="fitXY"
+            android:id="@+id/huy_themlistvideo"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="100dp"
+            android:text="HỦY"
+            ></Button>
+
+        <TextView
+            android:id="@+id/txt_TieuDeDM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="61dp"
+            android:layout_marginTop="8dp"
+            android:text="Tiêu đề"
+            android:textSize="16dp">
+
+        </TextView>
+
+        <Button
+
+            android:background="#00BCD4"
+            android:scaleType="fitXY"
+            android:id="@+id/btn_listvideo"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="ADD ALL"
+            ></Button>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec_DSVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_TieuDeDM"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

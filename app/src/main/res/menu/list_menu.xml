@@ -3,14 +3,17 @@
 
     <group>
         <item
+            android:icon="@drawable/home"
             android:id="@+id/iHome"
             android:title="Trang Chủ" />
 
         <item
+            android:icon="@drawable/user"
             android:id="@+id/iNguoiDung"
             android:title="Người Dùng"/>
 
         <item
+            android:icon="@drawable/khovideo"
             android:id="@+id/iKhoVideo"
             android:title="Kho Video"/>
 
@@ -19,6 +22,7 @@
             android:title="Mua gói thành viên"/>
 
         <item
+            android:icon="@drawable/gopy"
             android:id="@+id/iGopy"
             android:title="Góp Ý"/>
 

@@ -1,5 +1,4 @@
 package com.example.doanchuyennganh_nhom5.Adapter;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.doanchuyennganh_nhom5.R;
 
 import java.util.ArrayList;
-
 public class ChatRVAdapter extends RecyclerView.Adapter {
     private ArrayList<ChatsModal> chatsModalArrayList;
     private Context context;
-
     public ChatRVAdapter(ArrayList<ChatsModal> chatsModalArrayList, Context context) {
         this.chatsModalArrayList = chatsModalArrayList;
         this.context = context;
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,7 +34,6 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
         }
         return null;
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ChatsModal chatsModal = chatsModalArrayList.get(position);
@@ -51,28 +46,22 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                 ((BotViewHolder)holder).botMsgTV.setText(chatsModal.getMessage());
                 break;
         }
-
     }
-
     @Override
     public int getItemViewType(int position) {
         switch (chatsModalArrayList.get(position).getSender()){
             case "user":
                 return 0;
-
             case "bot":
                 return 1;
-
             default:
                 return -1;
         }
     }
-
     @Override
     public int getItemCount() {
         return chatsModalArrayList.size();
     }
-
     public static class UserViewHolder extends RecyclerView.ViewHolder{
         TextView userTV;
         public UserViewHolder(@NonNull View itemView) {
@@ -80,7 +69,6 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
             userTV = itemView.findViewById(R.id.idTVUser);
         }
     }
-
     public static class BotViewHolder extends RecyclerView.ViewHolder{
         TextView botMsgTV;
         public BotViewHolder(@NonNull View itemView) {

@@ -76,6 +76,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoHolder>
 //                Bundle bundle = new Bundle();
 //                bundle.putSerializable("Video", video);
                 intent.putExtra("ID_VIDEO",video.getIDVD());
+                dao.luotxem(video.getIDVD());
                 context.startActivity(intent);
             }
         });

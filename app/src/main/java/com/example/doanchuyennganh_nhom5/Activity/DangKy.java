@@ -1,5 +1,4 @@
 package com.example.doanchuyennganh_nhom5.Activity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -28,41 +28,29 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class DangKy extends AppCompatActivity {
     public static final String TAG = DangKy.class.getSimpleName();
-
     private EditText edtmail, edtPassWord, edtPhone, edtNhaplaipassword;
     private Button btnRegister;
     private ProgressDialog pDialog;
     private ImageView imgquaylai;
     DAO dao;
-//    public static final String REGISTER_URL = "https://doanchuyennghanh.000webhostapp.com/register.php";
-
-    public static final String KEY_LOAITK = "LoaiTK";
-    public static final String KEY_QUYEN = "Quyen";
-    public static final String KEY_MATKHAU = "Matkhau";
-    public static final String KEY_SDT = "Sdt";
-    public static final String KEY_MAIL = "Mail";
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dangky);
         addControls();
         addEvents();
+
     }
     private void addEvents() {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Get data input
-
                 String mail= edtmail.getText().toString().trim();
                 String mk = edtPassWord.getText().toString().trim();
                 String sdt = edtPhone.getText().toString().trim();
                 String nlmatkhau = edtNhaplaipassword.getText().toString().trim();
-
                 if (edtPhone.getText().length() != 0 && edtPassWord.getText().length() != 0
                         && edtNhaplaipassword.getText().length() != 0 && edtmail.getText().length() != 0){
                     if(dao.isTonTaiTK(sdt) == false){
@@ -71,7 +59,7 @@ public class DangKy extends AppCompatActivity {
                                     sdt,mail,mk,"USER","THUONG"
                             );
                             if(dao.isTonTaiTK(sdt)){
-                                Toast.makeText(DangKy.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DangKy.this, "Đăng ký thành công", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(DangKy.this, Dangnhap.class);
                                 startActivity(intent);
                             }else {
@@ -88,10 +76,7 @@ public class DangKy extends AppCompatActivity {
                 } else {
                     Toast.makeText(DangKy.this, "Vui lòng điền đầy đủ các trường", Toast.LENGTH_SHORT).show();
                 }
-
-                //Call method register
-                //registerUser(mail, sdt, mk,0,"0");
-                }
+            }
         });
         imgquaylai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +85,6 @@ public class DangKy extends AppCompatActivity {
             }
         });
     }
-
     private void addControls() {
         dao =  new DAO(DangKy.this);
         edtmail = (EditText) findViewById(R.id.edt_email_dk);
@@ -113,73 +97,4 @@ public class DangKy extends AppCompatActivity {
         pDialog.setMessage("Đang đăng ký...");
         pDialog.setCanceledOnTouchOutside(false);
     }
-
-//    private void registerUser(final String mail, final String sdt, final String mk, final int quyen,final String loaitk) {
-//
-//        if (checkEditText(edtmail) && checkEditText(edtPassWord) && checkEditText(edtPhone)) {
-//            pDialog.show();
-//            StringRequest registerRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
-//                    new Response.Listener<String>() {
-//                        @Override
-//                        public void onResponse(String response) {
-//                            Log.d(TAG, response);
-//                            String message = "";
-//                            try {
-//                                JSONObject jsonObject = new JSONObject(response);
-//                                if (jsonObject.getInt("success") == 1) {
-//                                    com.example.doanchuyennganh_nhom5.model.DangKy dangKy = new com.example.doanchuyennganh_nhom5.model.DangKy();
-//                                    dangKy.setSdt(jsonObject.getString("Sdt"));
-//                                    message = jsonObject.getString("message");
-//
-//                                    Toast.makeText(DangKy.this, message, Toast.LENGTH_LONG).show();
-//                                    //Start LoginActivity
-//                                    Intent intent = new Intent(DangKy.this, Dangnhap.class);
-//                                    startActivity(intent);
-//                                } else {
-//                                    message = jsonObject.getString("message");
-//
-//                                    Toast.makeText(DangKy.this, message, Toast.LENGTH_LONG).show();
-//                                }
-//                            } catch (JSONException error) {
-//                                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                            }
-//                            pDialog.dismiss();
-//                        }
-//                    },
-//                    new Response.ErrorListener() {
-//                        @Override
-//                        public void onErrorResponse(VolleyError error) {
-//                            VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                            pDialog.dismiss();
-//                        }
-//                    }) {
-//                @Override
-//                protected Map<String, String> getParams() {
-//                    Map<String, String> params = new HashMap<>();
-//                    params.put(KEY_MAIL, mail);
-//
-//                    params.put(KEY_SDT, sdt);
-//                    params.put(KEY_MATKHAU, mk);
-//                    params.put(KEY_QUYEN, String.valueOf(quyen));
-//                    params.put(KEY_LOAITK, loaitk);
-//                    return params;
-//                }
-//
-//            };
-//            RequestQueue requestQueue = Volley.newRequestQueue(this);
-//            requestQueue.add(registerRequest);
-//        }
-//    }
-
-    /**
-     * Check Input
-     */
-//    private boolean checkEditText(EditText editText) {
-//        if (editText.getText().toString().trim().length() > 0)
-//            return true;
-//        else {
-//            editText.setError("Vui lòng nhập dữ liệu!");
-//        }
-//        return false;
-//    }
 }

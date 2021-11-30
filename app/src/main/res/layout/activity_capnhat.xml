@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal" >
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,84 +42,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="20dp"
-        >
+        android:layout_margin="20dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_marginBottom="30dp"
             android:id="@+id/img_user_cn"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/user"
             android:layout_gravity="center"/>
-        <EditText
-            android:id="@+id/edt_hovaten_cn"
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content">
 
-            android:hint="Họ và tên"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:textColor="#050505"/>
-
-        <EditText
-            android:id="@+id/edt_ngaythangnamsinh_cn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="-1dp"
-            android:hint="Ngày sinh"
-            android:inputType="date"
-            android:minHeight="48dp"
-            android:textColor="#050505"/>
-        <EditText
-            android:id="@+id/edt_sodienthoai_cn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Số điện thoại"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:textColor="#050505"/>
-
-        <EditText
-            android:id="@+id/edt_mail_cn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Mail"
-            android:textColor="#050505"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp" />
-        <TextView
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Giới tính"
-            android:textColor="#050505"
-            android:textSize="18dp"/>
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkedButton="@id/rb_GioitinhNam_cn"
-            android:gravity="left"
-            android:orientation="horizontal">
-
-            <RadioButton
-
-                android:id="@+id/rb_GioitinhNam_cn"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/edt_sodienthoai_cn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Số điện thoại"
+                android:inputType="number"
                 android:minHeight="48dp"
-                android:text="Nam" />
+                android:textColor="#050505"/>
 
-            <RadioButton
-                android:layout_marginHorizontal="20dp"
-                android:id="@+id/rb_Gioitinhnu_cn"
-                android:layout_width="wrap_content"
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/edt_hovaten_cn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Họ và tên"
+                android:inputType="text"
                 android:minHeight="48dp"
-                android:text="Nữ" />
-        </RadioGroup>
+                android:textColor="#050505"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/edt_ngaythangnamsinh_cn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:hint="Ngày sinh"
+                android:inputType="date"
+                android:minHeight="48dp"
+                android:textColor="#050505"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/edt_mail_cn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mail"
+                android:textColor="#050505"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
@@ -146,11 +145,6 @@
 
         </LinearLayout>
 
-
-
     </LinearLayout>
-
-
-
 
 </LinearLayout>

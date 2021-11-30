@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Admin.Them_Video">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="Thêm Video"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:background="@color/teal_200"/>
+
+
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/ibtnQuaTrai"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@android:drawable/ic_media_rew"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/btnThem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Thêm"
+            android:backgroundTint="@color/teal_200"/>
+
+        <Button
+            android:id="@+id/btnHuy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Hủy"
+            android:backgroundTint="@color/colorPrimary"/>
+
+        <ImageButton
+            android:id="@+id/ibtnQuaPhai"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@android:drawable/ic_media_ff"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edtAddHinhdaidien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="Hình Nền" />
+
+    <EditText
+        android:id="@+id/edtAddTieude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="Tiêu Đề" />
+
+    <EditText
+        android:id="@+id/edtAddNoidung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:gravity="start"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:minHeight="48dp"
+        android:hint="Nội Dung" />
+
+    <EditText
+        android:id="@+id/edtAddTacgia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="Tác Giả" />
+
+<!--    <Spinner-->
+<!--        android:id="@+id/spnAddTheloai"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:minHeight="48dp"-->
+<!--        tools:ignore="SpeakableTextPresentCheck" />-->
+    <ImageView
+        android:id="@+id/HinhVideo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logodt"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
