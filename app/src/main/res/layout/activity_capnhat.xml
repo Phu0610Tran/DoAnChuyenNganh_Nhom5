@@ -28,6 +28,7 @@
                 android:layout_gravity="center"/>
 
             <ImageButton
+                android:id="@+id/quaylai_cn"
                 android:layout_width="35dp"
                 android:layout_height="25dp"
                 android:background="@null"

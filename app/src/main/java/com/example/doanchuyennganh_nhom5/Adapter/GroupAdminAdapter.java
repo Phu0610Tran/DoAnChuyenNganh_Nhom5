@@ -51,9 +51,6 @@ public class GroupAdminAdapter extends RecyclerView.Adapter<GroupAdminAdapter.Vi
                 holder.txtV_groupadmin.setText("Quản lý Video");
 
                 break;
-            case MainActivity.Key_QL_GOITK:
-                holder.txtV_groupadmin.setText("Quản lý goi");
-                break;
         }
         Log.e("dadag",String.valueOf(listKey.size()));
 
@@ -66,9 +63,6 @@ public class GroupAdminAdapter extends RecyclerView.Adapter<GroupAdminAdapter.Vi
                         break;
                     case MainActivity.Key_QLVIDEO:
                         context.startActivity(new Intent(context, QL_Video.class));
-                        break;
-                    case MainActivity.Key_QL_GOITK:
-                        context.startActivity(new Intent(context, QL_Goithanhvien.class));
                         break;
                 }
             }

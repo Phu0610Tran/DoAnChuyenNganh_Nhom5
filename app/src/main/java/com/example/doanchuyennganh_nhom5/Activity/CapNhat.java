@@ -2,6 +2,7 @@ package com.example.doanchuyennganh_nhom5.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -28,6 +29,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doanchuyennganh_nhom5.DataBase.DAO;
 import com.example.doanchuyennganh_nhom5.R;
+import com.example.doanchuyennganh_nhom5.model.DatePickerFragment;
+import com.example.doanchuyennganh_nhom5.model.TaiKhoan;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -36,40 +39,28 @@ import java.io.InputStream;
 import de.hdodenhof.circleimageview.CircleImageView;
 // import com.example.doanchuyennganh_nhom5.d.Account;
 
-public class CapNhat extends AppCompatActivity {
+public class CapNhat extends AppCompatActivity implements View.OnFocusChangeListener{
 
     EditText edthoten, edtngaythangnamsinh, edtgioitinh, edtsodienthoai, edtmail;
     Button btncapnhat;
     CircleImageView img_hinhanh;
     DAO dao;
+    ImageView quaylai_cn;
     //    private Account account;
     private boolean isEnabled;
     Button btndoimatkhau;
     ImageButton ibtn_Camera,ibtn_Folder;
-    int REQUEST_CODE_CAMERA=123;
-    int REQUEST_CODE_FOLDER=456;
+    final int REQUEST_CODE_CAMERA=123;
+    final int REQUEST_CODE_FOLDER=456;
 
-    //    public static final String url = "https://doanchuyennghanh.000webhostapp.com/update.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capnhat);
 
-//        Intent intent = getIntent();
-//        account = new Account();
-//        account = (Account) intent.getSerializableExtra("login");
-
         AnhXa();
-        edthoten.setText(Home.taiKhoan.getHovaTen());
-        edtngaythangnamsinh.setText(Home.taiKhoan.getNgaySinh());
-        edtmail.setText(Home.taiKhoan.getMaill());
-        edtsodienthoai.setText(Home.taiKhoan.getSDT());
-        edtsodienthoai.setEnabled(false);
 
-        if(Home.taiKhoan.getHinhTK() != null){
-            Bitmap bitmap = BitmapFactory.decodeByteArray(Home.taiKhoan.getHinhTK(),0, Home.taiKhoan.getHinhTK().length);
-            img_hinhanh.setImageBitmap(bitmap);
-        }
+        Getdata();
 
         btndoimatkhau.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +68,39 @@ public class CapNhat extends AppCompatActivity {
                 showdialog();
             }
         });
+        quaylai_cn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        edtngaythangnamsinh.setOnFocusChangeListener(this);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    private void Getdata() {
+        int id = Home.taiKhoan.getIDTK();
+        TaiKhoan taiKhoan = dao.Load(id);
+
+        edthoten.setText(taiKhoan.getHovaTen());
+        edtngaythangnamsinh.setText(taiKhoan.getNgaySinh());
+        edtmail.setText(taiKhoan.getMaill());
+        edtsodienthoai.setText(taiKhoan.getSDT());
+
+        edtsodienthoai.setEnabled(false);
+        if (taiKhoan.getHinhTK() == null){
+            img_hinhanh.setImageResource(R.drawable.user);
+        }else
+        {
+            byte[] hinhAnh = Home.taiKhoan.getHinhTK();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
+            img_hinhanh.setImageBitmap(bitmap);
+        }
     }
 
     private void showdialog() {
@@ -122,7 +146,6 @@ public class CapNhat extends AppCompatActivity {
         edtmail.setEnabled(isEnabled);
         edthoten.setEnabled(isEnabled);
         edtngaythangnamsinh.setEnabled(isEnabled);
-//        edtgioitinh.setEnabled(isEnabled);
         edtmail.setEnabled(isEnabled);
     }
 
@@ -155,9 +178,9 @@ public class CapNhat extends AppCompatActivity {
 
     private void AnhXa() {
         dao = new DAO(CapNhat.this);
+        quaylai_cn = findViewById(R.id.quaylai_cn);
         edthoten = (EditText) findViewById(R.id.edt_hovaten_cn);
         edtngaythangnamsinh = (EditText) findViewById(R.id.edt_ngaythangnamsinh_cn);
-//        edtgioitinh = (EditText) findViewById(R.id.edt_gioitinh_cn);
         edtsodienthoai = (EditText) findViewById(R.id.edt_sodienthoai_cn);
         edtmail = (EditText) findViewById(R.id.edt_mail_cn);
         img_hinhanh = findViewById(R.id.img_user_cn);
@@ -189,25 +212,18 @@ public class CapNhat extends AppCompatActivity {
                 }
                 else{
                     btncapnhat.setText("Cập nhật");
-                    // chuyen data image view -> mang byte[]
-//                    BitmapDrawable bitmapDrawable = (BitmapDrawable) img_hinhanh.getDrawable();
-//                    Bitmap bitmap = bitmapDrawable.getBitmap();
-//                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArray);
-//                    byte[] hinhAnh = byteArray.toByteArray();
-                    dao.CapNhatTaiKhoan(Home.taiKhoan.getIDTK(),edthoten.getText().toString(),
-                            edtngaythangnamsinh.getText().toString(), edtmail.getText().toString());
+//                     chuyen data image view -> mang byte[]
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable) img_hinhanh.getDrawable();
+                    Bitmap bitmap = bitmapDrawable.getBitmap();
+                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArray);
+                    byte[] hinhAnh = byteArray.toByteArray();
 
+                    dao.CapNhatTaiKhoan(Home.taiKhoan.getIDTK(),edthoten.getText().toString(),
+                            edtngaythangnamsinh.getText().toString(), edtmail.getText().toString(),hinhAnh);
+                    Getdata();
                     Toast.makeText(CapNhat.this, "Đã lưu", Toast.LENGTH_SHORT).show();
-                    onBackPressed();
-                    //dao
-                    //CapNhatTaiKhoan(url);
-//
-//                    String hoten = edthoten.getText().toString().trim();
-//                    String ngaythangnamsinh = edtngaythangnamsinh.getText().toString().trim();
-//                      String gioitinh = edtgioitinh.getText().toString().trim();
-//                    String sodienthoai = edtsodienthoai.getText().toString().trim();
-//                    String mail = edtmail.getText().toString().trim();
+                    startActivity(new Intent(CapNhat.this,Dangnhap.class));
                 }
             }
         });
@@ -234,44 +250,44 @@ public class CapNhat extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case REQUEST_CODE_CAMERA:
+                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED)
+                {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent,REQUEST_CODE_CAMERA);
+                }else
+                {
+                    Toast.makeText(CapNhat.this," Bạn không cho phép mở camera", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case REQUEST_CODE_FOLDER:
+                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED)
+                {
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setType("image/*");
+                    startActivityForResult(intent,REQUEST_CODE_FOLDER);
+                }else
+                {
+                    Toast.makeText(CapNhat.this," Bạn không cho phép mở folder", Toast.LENGTH_LONG).show();
+                }
+                break;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
-//    private void CapNhatTaiKhoan(final String url){
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//
-//                        if (response.trim().equals("success")){
-//                            // GetData(url);
-//                            Toast.makeText(CapNhat.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                        else{
-//                            Toast.makeText(CapNhat.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(CapNhat.this, "Vui lòng thử lại", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//        ){
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Map<String,String> params = new HashMap<>();
-//                params.put("IDTK",account.getIdtk());
-//                params.put("hovaten", edthoten.getText().toString().trim());
-//                params.put("ngaythangnamsinh", edtngaythangnamsinh.getText().toString().trim());
-////                params.put("gioitinh", edtgioitinh.getText().toString().trim());
-//                params.put("Sdt", edtsodienthoai.getText().toString().trim());
-//                params.put("Mail", edtmail.getText().toString().trim());
-//                return params;
-//            }
-//        };
-//        requestQueue.add(stringRequest);
-//    }
-
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        int id = view.getId();
+        switch (id){
+            case R.id.edt_ngaythangnamsinh_cn:
+                if(b){
+                    DatePickerFragment datePickerFragment = new DatePickerFragment();
+                    datePickerFragment.show(getFragmentManager(), "Ngày sinh");
+                }
+                break;
+        }
+    }
 }

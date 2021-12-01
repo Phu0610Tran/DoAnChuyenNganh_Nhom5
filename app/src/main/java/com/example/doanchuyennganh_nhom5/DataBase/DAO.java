@@ -35,6 +35,27 @@ public class DAO {
     }
 
 
+    public ArrayList<Video> GetlistvideoDM(String KEYDM){
+        ArrayList<Video> list = new ArrayList<>();
+        Cursor tro = db.Get("SELECT * FROM VIDEO WHERE THELOAI ='" + KEYDM + "' ORDER BY THOIGIANLOAD ");
+        while (tro.moveToNext()){
+            list.add(new Video(
+                    tro.getString(0),
+                    tro.getString(1),
+                    tro.getString(2),
+                    tro.getString(3),
+                    tro.getString(4),
+                    tro.getString(5),
+                    tro.getString(6),
+                    tro.getInt(7),
+                    tro.getInt(8),
+                    tro.getInt(9)
+            ));
+        }
+        return list;
+    }
+
+
 
     public Video thongtinvideo(String IDVIDEO){
         Cursor tro = db.Get("SELECT * FROM VIDEO WHERE IDVD = '" + IDVIDEO + "'");
@@ -185,7 +206,25 @@ public class DAO {
                 + "' , TIEUDE ='" + TIEUDE + "', NOIDUNG = '" + NOIDUNG + "', TACGIA = '" + TACGIA + "'  WHERE IDVD = '" + IDVD + "'");
     }
 
+    public TaiKhoan Load(int IDTK){
 
+        Cursor tro = db.Get("SELECT * FROM TAIKHOAN WHERE IDTK = " + IDTK);
+
+        while (tro.moveToNext()){
+
+            return new TaiKhoan(tro.getInt(0),
+                    tro.getString(1),
+                    tro.getString(2),
+                    tro.getString(3),
+                    tro.getString(4),
+                    tro.getString(5),
+                    tro.getBlob(6),
+                    tro.getString(7),
+                    tro.getString(8)
+            );
+        }
+        return null;
+    }
     public int Soluotxem(String IDVD)
     {
         Cursor cursor = db.Get("SELECT LUOTXEM FROM VIDEO WHERE IDVD = '" + IDVD + "'");
@@ -335,9 +374,18 @@ public class DAO {
         return false;
     }
 
-    public void CapNhatTaiKhoan(int IDTK, String HOVATEN,String NGAYSINH, String MAIL){
+    public void CapNhatTaiKhoan(int IDTK, String HOVATEN,String NGAYSINH, String MAIL,byte[] Hinh){
         db.Query("UPDATE TAIKHOAN SET HOVATEN = '" + HOVATEN + "', NGAYSINH = '" + NGAYSINH +
                 "', MAIL = '" + MAIL + "' WHERE IDTK = " + IDTK);
+
+        String sql = "UPDATE TAIKHOAN SET HINHDAIDIEN = ? WHERE IDTK="+ IDTK ;
+        SQLiteDatabase database = this.db.getWritableDatabase();
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+        statement.bindBlob(1,Hinh);
+        statement.executeInsert();
+
     }
 
     public boolean isTonTaiTK(String SDT){
@@ -351,7 +399,17 @@ public class DAO {
     public TaiKhoan DangNhap(String SDT, String MATKHAU){
 
         Cursor tro = db.Get("SELECT * FROM TAIKHOAN WHERE SDT = '" + SDT + "' AND MATKHAU = '" + MATKHAU + "'");
+
         while (tro.moveToNext()){
+//            Log.e(" test ",
+//                    tro.getString(1)+
+//                            tro.getString(2)+
+//                            tro.getString(3)+
+//                            tro.getString(4)+
+//                            tro.getString(5)+
+//                            tro.getBlob(6)+
+//                            tro.getString(7)+
+//                            tro.getString(8));
             return new TaiKhoan(tro.getInt(0),
                     tro.getString(1),
                     tro.getString(2),

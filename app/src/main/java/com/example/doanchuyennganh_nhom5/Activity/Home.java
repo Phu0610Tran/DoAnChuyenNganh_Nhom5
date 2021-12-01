@@ -2,6 +2,7 @@ package com.example.doanchuyennganh_nhom5.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -56,11 +57,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         ArrayList<Video> videos= new ArrayList<>();
 
         ListCate = new ArrayList<>();
-        ListCate.add(new DanhMuc("Hoạt hình","PLiJQ-xWoNAYv39NJXl82yfIMKIOE1eX32"));
-        ListCate.add(new DanhMuc("Thể thao","PLiJQ-xWoNAYs0BqMlN6705zsQtMQdDFxr"));
-        ListCate.add(new DanhMuc("Ẩm thực","PLiJQ-xWoNAYt0xD8bQcrI_POMJ5MDh_Hq"));
-        ListCate.add(new DanhMuc("Du lịch","PLiJQ-xWoNAYveId1AIh09ynJjnlSOh7V9"));
-        ListCate.add(new DanhMuc("Âm nhạc","PLiJQ-xWoNAYvy82qhU2Mjptq3F8hvOoUI"));
+        ListCate.add(new DanhMuc("Hoạt hình","HOATHINH"));
+        ListCate.add(new DanhMuc("Thể thao","THETHAO"));
+        ListCate.add(new DanhMuc("Ẩm thực","AMTHUC"));
+        ListCate.add(new DanhMuc("Du lịch","DULICH"));
+        ListCate.add(new DanhMuc("Âm nhạc","AMNHAC"));
         rec_Chung.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         DanhMucAdapter categoryAdapter = new DanhMucAdapter(this, ListCate);
         rec_Chung.setAdapter(categoryAdapter);
@@ -117,6 +118,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     @Override
+    protected void onStart() {
+        Menu menu = navigationView.getMenu();
+        if(Home.taiKhoan.getIDTK() == -1){
+            menu.findItem(R.id.iDangXuat).setVisible(false);
+        }else {
+            menu.findItem(R.id.iDangNhap).setVisible(false);
+        }
+        super.onStart();
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
@@ -131,14 +143,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         }else if (id == R.id.iKhoVideo) {
             startActivity(new Intent(this, Khovideo.class));
-        }else if (id == R.id.iGoi) {
-            startActivity(new Intent(this, Goithanhvien.class));
         }else if (id == R.id.iGopy) {
             startActivity(new Intent(this, GopY.class));
-        }else if (id == R.id.iCaiDat) {
-            startActivity(new Intent(this, Home.class));
-        }else if (id == R.id.iDangXuat) {
+        }else if (id == R.id.iDangNhap) {
             startActivity(new Intent(this, Dangnhap.class));
+        }else if (id == R.id.iDangXuat){
+            Intent intent = new Intent(this, Home.class);
+            Home.taiKhoan = new TaiKhoan();
+            startActivity(intent);
         }
 
 

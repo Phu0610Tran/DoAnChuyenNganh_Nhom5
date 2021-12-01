@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int Key_QLTK = 0;
     public static final int Key_QLVIDEO = 1;
-    public static final int Key_QL_GOITK = 2;
 
     RecyclerView recV_GroupAdmin;
 
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         listKey.add(Key_QLTK);
         listKey.add(Key_QLVIDEO);
-        listKey.add(Key_QL_GOITK);
 
         GroupAdminAdapter adapter = new GroupAdminAdapter(MainActivity.this,listKey);
         recV_GroupAdmin.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));

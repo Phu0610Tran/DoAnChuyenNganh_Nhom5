@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.doanchuyennganh_nhom5.Activity.Home;
+import com.example.doanchuyennganh_nhom5.DataBase.DAO;
 import com.example.doanchuyennganh_nhom5.R;
 import com.example.doanchuyennganh_nhom5.model.DanhMuc;
 import com.example.doanchuyennganh_nhom5.model.Video;
@@ -43,10 +44,15 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
     @Override
     public void onBindViewHolder(@NonNull DanhMucHolder holder, int position) {
         String tieude = ListCategory.get(position).getTen_DanhMuc();
-        VideoAdapter videoAdapter = new VideoAdapter();
+
+        DAO dao = new DAO(context);
+        ArrayList<Video> listVideo = dao.GetlistvideoDM(ListCategory.get(position).getKEY_LISTVIDEO());
+
+        VideoAdapter videoAdapter = new VideoAdapter(context,listVideo);
         videoAdapter.setContext(context);
 //        Log.e("Errỏ",Home.URL_GETJSON + ListCategory.get(position).getKEY_LISTVIDEO() + Home.KEY_API);
         GetJsonYouTube(Home.URL_GETJSON + ListCategory.get(position).getKEY_LISTVIDEO() + Home.KEY_API,videoAdapter);
+
         Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
         holder.txt_TieuDeDM.setText(tieude);
         holder.rec_DSVideo.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));

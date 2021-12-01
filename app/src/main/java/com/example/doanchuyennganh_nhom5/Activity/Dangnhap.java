@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doanchuyennganh_nhom5.Admin.MainActivity;
 import com.example.doanchuyennganh_nhom5.DataBase.DAO;
 import com.example.doanchuyennganh_nhom5.R;
 import com.example.doanchuyennganh_nhom5.model.TaiKhoan;
@@ -52,12 +54,25 @@ public class Dangnhap extends AppCompatActivity {
                 if(edtSdt.getText().length() != 0 && edtMatkhau.getText().length() != 0){
                     if(dao.isTonTaiTK(Sdt)){
                         Home.taiKhoan = dao.DangNhap(Sdt,Matkhau);
-                        if(Home.taiKhoan !=null){
-                            Intent intent = new Intent(Dangnhap.this, Home.class);
-                            startActivity(intent);
-                            Toast.makeText(Dangnhap.this, " Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        if(Home.taiKhoan.getIDTK() != -1){
+                            if(Home.taiKhoan.getQuyen().equals("ADMIN")){
+                                Intent intent = new Intent(Dangnhap.this, MainActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(Dangnhap.this, " Đăng nhập thành công ", Toast.LENGTH_SHORT).show();
+
+                            }
+                            else
+                            {
+                                Intent intent = new Intent(Dangnhap.this, Home.class);
+                                startActivity(intent);
+                                Toast.makeText(Dangnhap.this, " Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+                            }
                         }
-                    }
+                    }else
+                        {
+                            Toast.makeText(Dangnhap.this, " Sai thông tin đăng nhập ", Toast.LENGTH_SHORT).show();
+                        }
                 }
 
             }
@@ -118,73 +133,6 @@ public class Dangnhap extends AppCompatActivity {
         builder.show();
     }
 
-//    public void loginAccount(final String Sdt, final String Matkhau) {
-//
-//        if (checkEditText(edtSdt) && checkEditText(edtMatkhau)) {
-//            pDialog.show();
-//            StringRequest requestLogin = new StringRequest(Request.Method.POST, URL_LOGIN,
-//                    new Response.Listener<String>(){
-//                        @Override
-//                        public void onResponse(String response) {
-//                            Log.d(TAG, response);
-//                            String message = "";
-//                            try {
-//                                JSONObject jsonObject = new JSONObject(response);
-//                                if (jsonObject.getInt("success") == 1) {
-//
-//                                    Account account = new Account();
-//                                    account.setIdtk(jsonObject.getString("IDTK"));
-//                                    account.setSdt(jsonObject.getString("Sdt"));
-//                                    account.setHinhdaidien(jsonObject.getString("Hinhdaidien"));
-//                                    account.setGmail(jsonObject.getString("Mail"));
-//                                    account.setHovaten(jsonObject.getString("hovaten"));
-//                                    account.setQuyen(jsonObject.getInt("Quyen"));
-//                                    account.setLoaiTK(jsonObject.getString("LoaiTK"));
-//                                    //account.setNgaysinh(jsonObject.getLong("Ngaysinh"));
-//                                    message = jsonObject.getString("message");
-//
-//                                    Toast.makeText(Dangnhap.this, message, Toast.LENGTH_SHORT).show();
-//
-//                                    Intent intent = new Intent(Dangnhap.this, CapNhat.class);
-//                                    intent.putExtra("login", account);
-//                                    startActivity(intent);
-//
-//                                } else {
-//                                    message = jsonObject.getString("message");
-//                                    Toast.makeText(Dangnhap.this, message, Toast.LENGTH_LONG).show();
-//                                }
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                            pDialog.dismiss();
-//                        }
-//                    },
-//                    new Response.ErrorListener() {
-//                        @Override
-//                        public void onErrorResponse(VolleyError error) {
-//                            VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                            pDialog.dismiss();
-//                        }
-//                    }) {
-//                /**
-//                 * set paramater
-//                 * */
-//                @Override
-//                protected Map<String, String> getParams() {
-//                    Map<String, String> params = new HashMap<>();
-//                    params.put(KEY_SDT, Sdt);
-//                    params.put(KEY_MATKHAU, Matkhau);
-//                    return params;
-//                }
-//            };
-//            RequestQueue queue = Volley.newRequestQueue(this);
-//            queue.add(requestLogin);
-//        }
-//    }
-
-    /**
-     * Check input
-     */
     private boolean checkEditText(EditText editText) {
         if (editText.getText().toString().trim().length() > 0)
             return true;

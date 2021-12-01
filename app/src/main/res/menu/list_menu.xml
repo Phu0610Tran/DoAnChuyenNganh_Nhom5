@@ -17,20 +17,20 @@
             android:id="@+id/iKhoVideo"
             android:title="Kho Video"/>
 
-        <item
-            android:id="@+id/iGoi"
-            android:title="Mua gói thành viên"/>
 
         <item
             android:icon="@drawable/gopy"
             android:id="@+id/iGopy"
             android:title="Góp Ý"/>
 
-        <item
-            android:id="@+id/iCaiDat"
-            android:title="Cài Đặt"/>
 
         <item
+            android:icon="@drawable/login"
+            android:id="@+id/iDangNhap"
+            android:title="Đăng Nhập"/>
+
+        <item
+            android:icon="@drawable/logout"
             android:id="@+id/iDangXuat"
             android:title="Đăng Xuất"/>
 
