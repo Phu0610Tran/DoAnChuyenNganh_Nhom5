@@ -19,11 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanchuyennganh_nhom5.Adapter.DanhMucAdapter;
 import com.example.doanchuyennganh_nhom5.DataBase.DAO;
-import com.example.doanchuyennganh_nhom5.Test.LoaispAdapter;
 import com.example.doanchuyennganh_nhom5.R;
 import com.example.doanchuyennganh_nhom5.model.DanhMuc;
 import com.example.doanchuyennganh_nhom5.model.TaiKhoan;
-import com.example.doanchuyennganh_nhom5.d.Video;
+import com.example.doanchuyennganh_nhom5.model.Video;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;

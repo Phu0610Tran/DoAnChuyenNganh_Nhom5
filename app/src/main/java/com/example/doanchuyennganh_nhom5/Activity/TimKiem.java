@@ -24,7 +24,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.doanchuyennganh_nhom5.Adapter.TimKiemAdapter;
-import com.example.doanchuyennganh_nhom5.Test.UserAdapter;
 import com.example.doanchuyennganh_nhom5.DataBase.DAO;
 import com.example.doanchuyennganh_nhom5.R;
 import com.example.doanchuyennganh_nhom5.model.Video;
@@ -80,6 +79,12 @@ public class TimKiem extends AppCompatActivity {
                 speak();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        GetDataALL();
+        super.onStart();
     }
 
     private void GetDataALL() {

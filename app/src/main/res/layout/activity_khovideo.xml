@@ -29,6 +29,7 @@
                 android:layout_gravity="center"/>
 
             <ImageButton
+                android:id="@+id/out_khovideo"
                 android:layout_width="35dp"
                 android:layout_height="25dp"
                 android:background="@null"
@@ -49,14 +50,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center">
+
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Thể loại"
-                        android:textColor="#151515"/>
+                        android:textSize="20dp"
+                        android:textColor="#151515" />
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/spnTheloai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 

@@ -1,6 +1,10 @@
 package com.example.doanchuyennganh_nhom5.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -14,9 +18,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.doanchuyennganh_nhom5.Adapter.CategoryAdapter;
 import com.example.doanchuyennganh_nhom5.Adapter.VideoAdapter;
 import com.example.doanchuyennganh_nhom5.DataBase.DAO;
 import com.example.doanchuyennganh_nhom5.R;
+import com.example.doanchuyennganh_nhom5.model.Category;
 import com.example.doanchuyennganh_nhom5.model.Video;
 
 import org.json.JSONException;
@@ -27,17 +33,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Khovideo extends AppCompatActivity {
-    ArrayList<Video> videoArrayList;
+    ArrayList<Video> videoArrayList,videoArrayListOLD;
+    ImageButton out_khovideo;
     RecyclerView Rec_khovideo;
+    ArrayList<Category> listCategory;
     VideoAdapter adapter;
     DAO dao;
+    Spinner spnTheloai;
+    CategoryAdapter categoryAdapter;
+    String Danhmuc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_khovideo);
+        out_khovideo = findViewById(R.id.out_khovideo);
+        out_khovideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         Rec_khovideo =findViewById(R.id.Rec_khovideo);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
         videoArrayList = new ArrayList<>();
         dao = new DAO(Khovideo.this);
         videoArrayList = dao.ListLuuVideo(Home.taiKhoan.getIDTK());
@@ -46,5 +62,47 @@ public class Khovideo extends AppCompatActivity {
 
         Rec_khovideo.setAdapter(adapter);
 
+        spnTheloai = findViewById(R.id.spnTheloai);
+        listCategory = getListCategory();
+        categoryAdapter = new CategoryAdapter(Khovideo.this, R.layout.item_selected, listCategory);
+        spnTheloai.setAdapter(categoryAdapter);
+        Danhmuc = "";
+        spnTheloai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Danhmuc = categoryAdapter.getItem(position).getIDcategory();
+                Toast.makeText(Khovideo.this, " bạn chọn " + Danhmuc, Toast.LENGTH_SHORT).show();
+
+                videoArrayListOLD = new ArrayList<>();
+                videoArrayListOLD = dao.ListLuuVideoTHELOAI(Home.taiKhoan.getIDTK(),Danhmuc);
+                adapter.setListVideo(videoArrayListOLD);
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    private ArrayList<Category> getListCategory() {
+        ArrayList<Category> list = new ArrayList<>();
+
+        list.add(new Category("Âm Nhạc","AMNHAC"));
+        list.add(new Category("Hoạt Hình","HOATHINH"));
+        list.add(new Category("Ẩm Thực","AMTHUC"));
+        list.add(new Category("Du Lịch", "DULICH"));
+        list.add(new Category("Thể Thao", "THETHAO"));
+
+        return list;
     }
 }

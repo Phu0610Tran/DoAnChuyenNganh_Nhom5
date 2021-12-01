@@ -120,6 +120,27 @@ public class DAO {
         }
         return list;
     }
+
+    public ArrayList<Video> ListLuuVideoTHELOAI(int IDTK, String THELOAI){
+        ArrayList<Video> list = new ArrayList<>();
+        Cursor tro = db.Get("SELECT * FROM VIDEO A, LUUTRU B WHERE B.IDTK = " + IDTK + " AND A.IDVD = B.IDVD AND THELOAI = '" + THELOAI + "' ORDER BY THOIGIAN DESC");
+        while (tro.moveToNext()){
+            list.add(new Video(
+                    tro.getString(0),
+                    tro.getString(1),
+                    tro.getString(2),
+                    tro.getString(3),
+                    tro.getString(4),
+                    tro.getString(5),
+                    tro.getString(6),
+                    tro.getInt(7),
+                    tro.getInt(8),
+                    tro.getInt(9)
+
+            ));
+        }
+        return list;
+    }
     public ArrayList<Video> TIMKIEM(){
         ArrayList<Video> doAnArrayList = new ArrayList<>();
         String truyvan = "SELECT * FROM VIDEO ";
