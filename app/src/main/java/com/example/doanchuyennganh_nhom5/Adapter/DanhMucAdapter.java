@@ -51,6 +51,7 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
         VideoAdapter videoAdapter = new VideoAdapter(context,listVideo);
         videoAdapter.setContext(context);
 //        Log.e("Errỏ",Home.URL_GETJSON + ListCategory.get(position).getKEY_LISTVIDEO() + Home.KEY_API);
+//        Log.e(" test ", ListCategory.get(position).getKEY_LISTVIDEO());
         GetJsonYouTube(Home.URL_GETJSON + ListCategory.get(position).getKEY_LISTVIDEO() + Home.KEY_API,videoAdapter);
 
         Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
@@ -99,7 +100,7 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "ssssssssss", Toast.LENGTH_SHORT).show();
+
             }
         }
         );

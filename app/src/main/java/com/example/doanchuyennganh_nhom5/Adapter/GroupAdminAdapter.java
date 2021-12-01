@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doanchuyennganh_nhom5.Activity.Dangnhap;
 import com.example.doanchuyennganh_nhom5.Admin.MainActivity;
 import com.example.doanchuyennganh_nhom5.Admin.QL_Goithanhvien;
 import com.example.doanchuyennganh_nhom5.Admin.QL_Taikhoan;
@@ -49,7 +50,9 @@ public class GroupAdminAdapter extends RecyclerView.Adapter<GroupAdminAdapter.Vi
                 break;
             case MainActivity.Key_QLVIDEO:
                 holder.txtV_groupadmin.setText("Quản lý Video");
-
+                break;
+            case MainActivity.Key_LOGOUT:
+                holder.txtV_groupadmin.setText("Đăng Xuất");
                 break;
         }
         Log.e("dadag",String.valueOf(listKey.size()));
@@ -63,6 +66,9 @@ public class GroupAdminAdapter extends RecyclerView.Adapter<GroupAdminAdapter.Vi
                         break;
                     case MainActivity.Key_QLVIDEO:
                         context.startActivity(new Intent(context, QL_Video.class));
+                        break;
+                    case MainActivity.Key_LOGOUT:
+                        context.startActivity(new Intent(context, Dangnhap.class));
                         break;
                 }
             }
