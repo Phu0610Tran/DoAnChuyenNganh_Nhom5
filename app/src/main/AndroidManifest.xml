@@ -31,9 +31,6 @@
             android:name=".Admin.Them_Video"
             android:exported="true" />
         <activity
-            android:name=".Admin.QL_Goithanhvien"
-            android:exported="true" />
-        <activity
             android:name=".Admin.QL_Taikhoan"
             android:exported="true" />
         <activity
@@ -56,9 +53,6 @@
             android:exported="true" />
         <activity
             android:name=".Test.myvideo"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.Goithanhvien"
             android:exported="true" />
         <activity
             android:name=".Activity.GopY"

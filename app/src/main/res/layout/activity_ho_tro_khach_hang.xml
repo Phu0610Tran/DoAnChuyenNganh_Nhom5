@@ -28,8 +28,6 @@
             android:textColor="@color/white"/>
     </LinearLayout>
 
-    <!--recycler view to display our chats-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVChats"
         android:layout_width="match_parent"
@@ -44,7 +42,6 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
-        <!--edit text to enter message-->
         <EditText
             android:id="@+id/idEdtMessage"
             android:layout_width="0dp"
@@ -54,7 +51,6 @@
             android:minHeight="48dp"
             android:paddingLeft="20dp" />
 
-        <!--button to send message-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/idIBSend"
             android:layout_width="60dp"

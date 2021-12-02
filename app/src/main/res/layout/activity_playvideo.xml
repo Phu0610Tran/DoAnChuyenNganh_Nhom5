@@ -116,7 +116,7 @@
                 android:text="nội dung video"
                 android:textSize="15dp"
                 app:trimLines="5"
-                app:trimMode="trimModeLine"></com.borjabravo.readmoretextview.ReadMoreTextView>
+                app:trimMode="trimModeLine"/>
 
             <LinearLayout
                 android:id="@+id/layoutBinhLuan_playvideo"
@@ -147,14 +147,9 @@
                 android:id="@+id/rec_Binhluan_playvideo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"></androidx.recyclerview.widget.RecyclerView>
-
-
+                android:layout_marginEnd="0dp"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

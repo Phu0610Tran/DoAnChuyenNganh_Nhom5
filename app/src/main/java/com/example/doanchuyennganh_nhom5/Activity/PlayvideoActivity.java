@@ -57,7 +57,6 @@ public class PlayvideoActivity extends YouTubeBaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playvideo);
         Anhxa();
-        dao = new DAO(PlayvideoActivity.this);
         Intent intent = getIntent();
         id = intent.getStringExtra("ID_VIDEO");
         youTubePlayerView.initialize(Home.KEY_API,this);
@@ -66,6 +65,49 @@ public class PlayvideoActivity extends YouTubeBaseActivity
         loadlike();
         loadluotxem();
 
+        SuKien();
+    }
+
+    private void loadluotxem(){
+        txt_luotxem_playvide.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(dao.Soluotxem(id)) + " Lượt xem"));
+        txt_luotlike_playvide.setText(String.valueOf(dao.Solike(id,1)));
+        txt_luotdislike_playvide.setText(String.valueOf(dao.Solike(id,2)));
+    }
+
+    private void loadlike() {
+        img_like_playvideo.setImageResource(R.drawable.ic_thumb_up_black_48dp);
+        img_dislike_playvideo.setImageResource(R.drawable.ic_thumb_down_off_alt_black_48dp);
+
+        if (dao.isDaLike(id,Home.taiKhoan.getIDTK()) == 1){
+            isLike = true;
+            isdisLike = false;
+            img_like_playvideo.setImageResource(R.drawable.like);
+        } else if(dao.isDaLike(id,Home.taiKhoan.getIDTK()) == 2){
+            isdisLike = true;
+            isLike = false;
+            img_dislike_playvideo.setImageResource(R.drawable.dislike);
+        }
+    }
+    private void Luuvideo() {
+        if (dao.isTonTaiLuuVideo(Home.taiKhoan.getIDTK(), id) == false){
+            img_luuVideo_playvideo.setImageResource(R.drawable.ic_bookmark_border_black_48dp);
+            txt_luuvideo_playvideo.setText("Lưu");
+        } else {
+            img_luuVideo_playvideo.setImageResource(R.drawable.ic_bookmark_black_48dp);
+            txt_luuvideo_playvideo.setText("Đã lưu");
+        }
+    }
+    @Override
+    protected void onStart() {
+        listBL = dao.LayBinhLuan(id);
+        binhLuanAdapter = new BinhLuanAdapter(listBL);
+        recV_chatbox.setAdapter(binhLuanAdapter);
+        recV_chatbox.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+
+        super.onStart();
+    }
+
+    private void SuKien() {
         edt_noidungbl_playvideo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -76,18 +118,18 @@ public class PlayvideoActivity extends YouTubeBaseActivity
         layout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    if(isLike == true){
-                        img_like_playvideo.setImageResource(R.drawable.ic_thumb_up_black_48dp);
-                        dao.xoathem(id,Home.taiKhoan.getIDTK(), 1);
-                    }else {
-                        if(isdisLike == true){
-                            img_dislike_playvideo.setImageResource(R.drawable.ic_thumb_down_off_alt_black_48dp);
-                            dao.xoathem(id,Home.taiKhoan.getIDTK(), 2);
-                            isdisLike = !isdisLike;
-                        }
-                        img_like_playvideo.setImageResource(R.drawable.like);
-                        dao.them(id,Home.taiKhoan.getIDTK(), 1);
+                if(isLike == true){
+                    img_like_playvideo.setImageResource(R.drawable.ic_thumb_up_black_48dp);
+                    dao.xoathem(id,Home.taiKhoan.getIDTK(), 1);
+                }else {
+                    if(isdisLike == true){
+                        img_dislike_playvideo.setImageResource(R.drawable.ic_thumb_down_off_alt_black_48dp);
+                        dao.xoathem(id,Home.taiKhoan.getIDTK(), 2);
+                        isdisLike = !isdisLike;
                     }
+                    img_like_playvideo.setImageResource(R.drawable.like);
+                    dao.them(id,Home.taiKhoan.getIDTK(), 1);
+                }
                 loadluotxem();
                 isLike = !isLike;
             }
@@ -95,19 +137,19 @@ public class PlayvideoActivity extends YouTubeBaseActivity
         layout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    if(isdisLike == true){
+                if(isdisLike == true){
 
-                        img_dislike_playvideo.setImageResource(R.drawable.ic_thumb_down_off_alt_black_48dp);
-                        dao.xoathem(id,Home.taiKhoan.getIDTK(), 2);
-                    }else {
-                        if(isLike == true){
-                            img_like_playvideo.setImageResource(R.drawable.ic_thumb_up_black_48dp);
-                            dao.xoathem(id,Home.taiKhoan.getIDTK(), 1);
-                            isLike = !isLike;
-                        }
-                        img_dislike_playvideo.setImageResource(R.drawable.dislike);
-                        dao.them(id,Home.taiKhoan.getIDTK(), 2);
+                    img_dislike_playvideo.setImageResource(R.drawable.ic_thumb_down_off_alt_black_48dp);
+                    dao.xoathem(id,Home.taiKhoan.getIDTK(), 2);
+                }else {
+                    if(isLike == true){
+                        img_like_playvideo.setImageResource(R.drawable.ic_thumb_up_black_48dp);
+                        dao.xoathem(id,Home.taiKhoan.getIDTK(), 1);
+                        isLike = !isLike;
                     }
+                    img_dislike_playvideo.setImageResource(R.drawable.dislike);
+                    dao.them(id,Home.taiKhoan.getIDTK(), 2);
+                }
                 loadluotxem();
                 isdisLike = !isdisLike;
             }
@@ -159,67 +201,31 @@ public class PlayvideoActivity extends YouTubeBaseActivity
             }
         });
     }
-    private void loadluotxem(){
-        txt_luotxem_playvide.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(dao.Soluotxem(id)) + " Lượt xem"));
-        txt_luotlike_playvide.setText(String.valueOf(dao.Solike(id,1)));
-        txt_luotdislike_playvide.setText(String.valueOf(dao.Solike(id,2)));
-    }
-    private void loadlike() {
-        img_like_playvideo.setImageResource(R.drawable.ic_thumb_up_black_48dp);
-        img_dislike_playvideo.setImageResource(R.drawable.ic_thumb_down_off_alt_black_48dp);
 
-
-        if (dao.isDaLike(id,Home.taiKhoan.getIDTK()) == 1){
-            isLike = true;
-            isdisLike = false;
-            img_like_playvideo.setImageResource(R.drawable.like);
-        } else if(dao.isDaLike(id,Home.taiKhoan.getIDTK()) == 2){
-            isdisLike = true;
-            isLike = false;
-            img_dislike_playvideo.setImageResource(R.drawable.dislike);
-        }
-    }
-    private void Luuvideo() {
-        if (dao.isTonTaiLuuVideo(Home.taiKhoan.getIDTK(), id) == false){
-            img_luuVideo_playvideo.setImageResource(R.drawable.ic_bookmark_border_black_48dp);
-            txt_luuvideo_playvideo.setText("Lưu");
-        } else {
-            img_luuVideo_playvideo.setImageResource(R.drawable.ic_bookmark_black_48dp);
-            txt_luuvideo_playvideo.setText("Đã lưu");
-        }
-    }
-    @Override
-    protected void onStart() {
-        listBL = dao.LayBinhLuan(id);
-        Log.e("BL",String.valueOf(listBL.size()));
-        binhLuanAdapter = new BinhLuanAdapter(listBL);
-        //Load();
-
-
-        recV_chatbox.setAdapter(binhLuanAdapter);
-        recV_chatbox.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-
-        super.onStart();
-    }
     private void Anhxa() {
-        scrollV = (NestedScrollView) findViewById(R.id.scrollV);
+        dao = new DAO(PlayvideoActivity.this);
+
         edt_noidungbl_playvideo = (EditText) findViewById(R.id.edt_noidungbl_playvideo);
         txt_luotxem_playvide = (TextView) findViewById(R.id.txt_luotxem_playvide);
         txt_luotlike_playvide = (TextView) findViewById(R.id.txt_luotlike_playvide);
         txt_luotdislike_playvide = (TextView) findViewById(R.id.txt_luotdislike_playvide);
+        txt_luuvideo_playvideo = (TextView) findViewById(R.id.txt_luuvideo_playvideo);
+        txtNoiDungBL = (TextView) findViewById(R.id.edt_noidungbl_playvideo);
+        txt_tieude_playvideo = (TextView) findViewById(R.id.txt_tieude_playvideo);
+        rmtxtV_Xemthem = (TextView) findViewById(R.id.rmtxtV_Xemthem);
+
+        img_luuVideo_playvideo = (ImageView) findViewById(R.id.img_luuVideo_playvideo);
         img_like_playvideo = (ImageView) findViewById(R.id.img_like_playvideo);
         img_dislike_playvideo = (ImageView) findViewById(R.id.img_dislike_playvideo);
         layout1 = (LinearLayout)findViewById(R.id.layout1);
         layout2 = (LinearLayout)findViewById(R.id.layout2);
-        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.myvideo);
-        txt_tieude_playvideo = (TextView) findViewById(R.id.txt_tieude_playvideo);
-        rmtxtV_Xemthem = (TextView) findViewById(R.id.rmtxtV_Xemthem);
         layoutLuu_playvideo = (LinearLayout) findViewById(R.id.layoutLuu_playvideo);
-        img_luuVideo_playvideo = (ImageView) findViewById(R.id.img_luuVideo_playvideo);
-        txt_luuvideo_playvideo = (TextView) findViewById(R.id.txt_luuvideo_playvideo);
+        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.myvideo);
+
+        scrollV = (NestedScrollView) findViewById(R.id.scrollV);
         recV_chatbox = (RecyclerView) findViewById(R.id.rec_Binhluan_playvideo);
         btn_GuiBl = (Button) findViewById(R.id.btn_GuiBl);
-        txtNoiDungBL = (TextView) findViewById(R.id.edt_noidungbl_playvideo);
+
     }
     private void GetData() {
         Video video = dao.thongtinvideo(id);

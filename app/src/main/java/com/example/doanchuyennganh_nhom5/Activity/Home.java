@@ -52,41 +52,36 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         dao = new DAO(Home.this);
         ActionBar();
 
-        rec_Chung =findViewById(R.id.rec_Chung);
-        ArrayList<Video> videos= new ArrayList<>();
-
         ListCate = new ArrayList<>();
         ListCate.add(new DanhMuc("Hoạt hình","HOATHINH"));
         ListCate.add(new DanhMuc("Thể thao","THETHAO"));
         ListCate.add(new DanhMuc("Ẩm thực","AMTHUC"));
         ListCate.add(new DanhMuc("Du lịch","DULICH"));
         ListCate.add(new DanhMuc("Âm nhạc","AMNHAC"));
+
         rec_Chung.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         DanhMucAdapter categoryAdapter = new DanhMucAdapter(this, ListCate);
         rec_Chung.setAdapter(categoryAdapter);
-        img_search_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Home.this,TimKiem.class));
-            }
-        });
+
+        SuKien();
 
     }
 
-    public interface VolleyCallback {
-        void onSuccessResponse(String result);
+    private void SuKien() {
+        img_search_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { startActivity(new Intent(Home.this,TimKiem.class)); }
+        });
     }
 
 
     private void Anhxa() {
+        rec_Chung =findViewById(R.id.rec_Chung);
         imageView = findViewById(R.id.img_caidat_home);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.home_nav_view);
         contentView = findViewById(R.id.content_view);
         img_search_home = findViewById(R.id.img_search_home);
-        //mRecyclerView = findViewById(R.id.recV_LoadvieoTC);
-
-
     }
 
     @Override
@@ -112,8 +107,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                else drawerLayout.openDrawer(GravityCompat.END);
             }
         });
-
-
     }
 
     @Override
@@ -136,10 +129,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }else if (id == R.id.iNguoiDung) {
             if(Home.taiKhoan.getIDTK() != -1){
                 startActivity(new Intent(this, CapNhat.class));
-            }else {
-                startActivity(new Intent(this, Dangnhap.class));
-            }
-
+            } else { startActivity(new Intent(this, Dangnhap.class)); }
         }else if (id == R.id.iKhoVideo) {
             startActivity(new Intent(this, Khovideo.class));
         }else if (id == R.id.iGopy) {
@@ -147,11 +137,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }else if (id == R.id.iDangNhap) {
             startActivity(new Intent(this, Dangnhap.class));
         }else if (id == R.id.iDangXuat){
-            Intent intent = new Intent(this, Home.class);
             Home.taiKhoan = new TaiKhoan();
-            startActivity(intent);
+            startActivity(new Intent(this, Home.class));
         }
-
 
         drawerLayout.closeDrawer(GravityCompat.END);
         return true;

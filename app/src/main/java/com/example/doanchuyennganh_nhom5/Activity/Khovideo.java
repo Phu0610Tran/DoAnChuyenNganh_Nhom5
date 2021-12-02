@@ -36,7 +36,7 @@ public class Khovideo extends AppCompatActivity {
     ArrayList<Video> videoArrayList,videoArrayListOLD;
     ImageButton out_khovideo;
     RecyclerView Rec_khovideo;
-    ArrayList<Category> listCategory;
+
     VideoAdapter adapter;
     DAO dao;
     Spinner spnTheloai;
@@ -46,27 +46,28 @@ public class Khovideo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_khovideo);
-        out_khovideo = findViewById(R.id.out_khovideo);
-        out_khovideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        Rec_khovideo =findViewById(R.id.Rec_khovideo);
-        videoArrayList = new ArrayList<>();
-        dao = new DAO(Khovideo.this);
+        AnhXa();
+
         videoArrayList = dao.ListLuuVideo(Home.taiKhoan.getIDTK());
+
         Rec_khovideo.setLayoutManager(new GridLayoutManager(this,2));
         adapter = new VideoAdapter(this, videoArrayList);
-
         Rec_khovideo.setAdapter(adapter);
 
-        spnTheloai = findViewById(R.id.spnTheloai);
-        listCategory = getListCategory();
-        categoryAdapter = new CategoryAdapter(Khovideo.this, R.layout.item_selected, listCategory);
+        categoryAdapter = new CategoryAdapter(Khovideo.this, R.layout.item_selected, getListCategory());
         spnTheloai.setAdapter(categoryAdapter);
         Danhmuc = "";
+
+        SuKien();
+    }
+
+    private void SuKien() {
+
+        out_khovideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { onBackPressed(); }
+        });
+
         spnTheloai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -86,7 +87,13 @@ public class Khovideo extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void AnhXa() {
+        dao = new DAO(Khovideo.this);
+        out_khovideo = findViewById(R.id.out_khovideo);
+        Rec_khovideo =findViewById(R.id.Rec_khovideo);
+        spnTheloai = findViewById(R.id.spnTheloai);
     }
 
     @Override

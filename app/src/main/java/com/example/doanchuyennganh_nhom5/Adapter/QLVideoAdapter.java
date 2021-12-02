@@ -60,18 +60,8 @@ public class QLVideoAdapter extends RecyclerView.Adapter<QLVideoAdapter.Viewhold
             public void onClick(View v) {
                 setPosition(holder.getPosition());
                 holder.itemView .performLongClick();
-                //Toast.makeText(context, "hi", Toast.LENGTH_SHORT).show();
             }
         });
-
-//        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                setPosition(holder.getPosition());
-//                return false;
-//            }
-//        });
-
     }
 
 

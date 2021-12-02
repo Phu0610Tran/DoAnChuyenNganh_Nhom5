@@ -1,10 +1,10 @@
 package com.example.doanchuyennganh_nhom5.Adapter;
 
-public class ChatsModal {
+public class ChatsModel {
     private String message;
     private String sender;
 
-    public ChatsModal(String message, String sender) {
+    public ChatsModel(String message, String sender) {
         this.message = message;
         this.sender = sender;
     }

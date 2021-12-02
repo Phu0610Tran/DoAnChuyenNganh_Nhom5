@@ -2,7 +2,6 @@ package com.example.doanchuyennganh_nhom5.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanchuyennganh_nhom5.Activity.Dangnhap;
 import com.example.doanchuyennganh_nhom5.Admin.MainActivity;
-import com.example.doanchuyennganh_nhom5.Admin.QL_Goithanhvien;
 import com.example.doanchuyennganh_nhom5.Admin.QL_Taikhoan;
 import com.example.doanchuyennganh_nhom5.Admin.QL_Video;
 import com.example.doanchuyennganh_nhom5.R;
@@ -35,7 +33,6 @@ public class GroupAdminAdapter extends RecyclerView.Adapter<GroupAdminAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_groupadmin,parent,false);
-
         return new ViewHolder(view);
     }
 
@@ -46,7 +43,6 @@ public class GroupAdminAdapter extends RecyclerView.Adapter<GroupAdminAdapter.Vi
         switch (key){
             case MainActivity.Key_QLTK:
                 holder.txtV_groupadmin.setText("Quản lý tài khoản");
-
                 break;
             case MainActivity.Key_QLVIDEO:
                 holder.txtV_groupadmin.setText("Quản lý Video");
@@ -55,7 +51,6 @@ public class GroupAdminAdapter extends RecyclerView.Adapter<GroupAdminAdapter.Vi
                 holder.txtV_groupadmin.setText("Đăng Xuất");
                 break;
         }
-        Log.e("dadag",String.valueOf(listKey.size()));
 
         holder.cardV_groupadmin.setOnClickListener(new View.OnClickListener() {
             @Override

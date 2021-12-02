@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Activity.Home">
 
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/home_nav_view"
         android:layout_width="wrap_content"
@@ -16,7 +15,6 @@
         app:headerLayout="@layout/header"
         android:fitsSystemWindows="true"
         app:menu="@menu/list_menu"/>
-
 
     <LinearLayout
         android:id="@+id/content_view"
@@ -39,17 +37,6 @@
                 app:tint="#000000">
 
             </ImageView>
-<!--            <ImageView-->
-<!--                android:id="@+id/img_user_home"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_gravity="right"-->
-<!--                android:src="@drawable/baseline_account_circle_18"-->
-<!--                app:tint="#000000">-->
-
-<!--            </ImageView>-->
-
-
 
             <ImageView
                 android:id="@+id/img_notifications_home"
@@ -97,61 +84,6 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="0dp"></androidx.recyclerview.widget.RecyclerView>
         </RelativeLayout>
-<!--        <ScrollView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            tools:ignore="SpeakableTextPresentCheck">-->
-
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="10dp">-->
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content">-->
-
-<!--                    <TextView-->
-
-<!--                        android:id="@+id/txt_theloai_home"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Phim"-->
-<!--                        android:textColor="#090909"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintHorizontal_bias="0.0"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintVertical_bias="0.0" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/txt_xemthem_home"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-
-<!--                        android:text="Xem thêm"-->
-<!--                        android:textColor="#090909"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintHorizontal_bias="1.0"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintVertical_bias="0.0" />-->
-
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/recV_LoadvieoTC"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-
-<!--                    android:background="#6A1D1D" />-->
-
-<!--            </LinearLayout>-->
-
-<!--        </ScrollView>-->
 
     </LinearLayout>
 

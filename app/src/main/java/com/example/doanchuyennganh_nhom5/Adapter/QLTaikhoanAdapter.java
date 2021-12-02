@@ -27,7 +27,6 @@ public class QLTaikhoanAdapter extends RecyclerView.Adapter<QLTaikhoanAdapter.Vi
     ArrayList<TaiKhoan> listTaiKhoan;
     Context context;
     public static int position;
-
     public static int getPosition() {
         return position;
     }
@@ -53,14 +52,9 @@ public class QLTaikhoanAdapter extends RecyclerView.Adapter<QLTaikhoanAdapter.Vi
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         TaiKhoan taiKhoan = listTaiKhoan.get(position);
 
-        // chuyen byte[] -> ve bitmap
         byte[] hinhAnh = taiKhoan.getHinhTK();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
         holder.imgV_Hinh_qlTaikhoan.setImageBitmap(bitmap);
-
-//        Picasso.with(context).load(String.valueOf(hinhAnh))
-//                .placeholder(R.drawable.logodt)
-//                .error(R.drawable.logodt).into(holder.imgV_Hinh_qlTaikhoan);
 
         holder.txtV_Hovaten_qlTaikhoan.setText(taiKhoan.getHovaTen());
 
@@ -69,18 +63,8 @@ public class QLTaikhoanAdapter extends RecyclerView.Adapter<QLTaikhoanAdapter.Vi
             public void onClick(View v) {
                 setPosition(holder.getPosition());
                 holder.itemView .performLongClick();
-                //Toast.makeText(context, "hi", Toast.LENGTH_SHORT).show();
             }
         });
-
-//        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                setPosition(holder.getPosition());
-//                return false;
-//            }
-//        });
-
     }
 
 

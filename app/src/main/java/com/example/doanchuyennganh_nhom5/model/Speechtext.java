@@ -19,15 +19,12 @@ import com.example.doanchuyennganh_nhom5.R;
 public class Speechtext extends AppCompatActivity {
 
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
-
     ImageButton voiceBtn;
-    EditText textTv;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.speech_to_text);
-
-//        voiceBtn = (ImageButton) findViewById(R.id.voiceBtn);
 
         voiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +56,7 @@ public class Speechtext extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_CODE_SPEECH_INPUT:{
-                if (resultCode == RESULT_OK && null != data){
-                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-
-//                    textTv.setText(result.get(0));
-                }
+                if (resultCode == RESULT_OK && null != data){ }
                 break;
             }
         }

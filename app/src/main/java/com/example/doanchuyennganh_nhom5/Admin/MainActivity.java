@@ -34,7 +34,5 @@ public class MainActivity extends AppCompatActivity {
         GroupAdminAdapter adapter = new GroupAdminAdapter(MainActivity.this,listKey);
         recV_GroupAdmin.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recV_GroupAdmin.setAdapter(adapter);
-
-
     }
 }

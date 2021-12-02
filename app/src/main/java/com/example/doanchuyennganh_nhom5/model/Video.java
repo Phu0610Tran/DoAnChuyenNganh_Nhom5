@@ -9,7 +9,6 @@ public class Video implements Serializable {
     public Video() {
     }
 
-
     public Video(String IDVD, String hinhVD,String tieuDeVD, String noiDungVD, String tacGia){
         this.IDVD = IDVD;
         HinhVD = hinhVD;

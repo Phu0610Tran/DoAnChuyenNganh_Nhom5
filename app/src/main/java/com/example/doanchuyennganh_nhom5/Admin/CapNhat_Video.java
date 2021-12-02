@@ -38,7 +38,6 @@ public class CapNhat_Video extends AppCompatActivity {
         Intent intent = getIntent();
         String ID = intent.getStringExtra("IDVD");
 
-
         if (ID == null){
             return;
         }
@@ -51,11 +50,10 @@ public class CapNhat_Video extends AppCompatActivity {
         edtTieuDe.setText(video.getTieuDeVD());
         edtNoiDung.setText(video.getNoiDungVD());
         edtTacGia.setText(video.getTacGia());
+
         Picasso.with(CapNhat_Video.this).load(video.getHinhVD())
                 .placeholder(R.drawable.logodt)
                 .error(R.drawable.logodt).into(img_suavideo);
-
-
     }
 
     private void enableControl(){
@@ -105,7 +103,6 @@ public class CapNhat_Video extends AppCompatActivity {
                     } else {
                         Toast.makeText(CapNhat_Video.this, "Hãy nhập đầy đủ thông tin !", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }
         });

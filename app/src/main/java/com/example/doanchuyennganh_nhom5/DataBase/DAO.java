@@ -34,7 +34,6 @@ public class DAO {
         return tro;
     }
 
-
     public ArrayList<Video> GetlistvideoDM(String KEYDM){
         ArrayList<Video> list = new ArrayList<>();
         Cursor tro = db.Get("SELECT * FROM VIDEO WHERE THELOAI ='" + KEYDM + "' ORDER BY THOIGIANLOAD ");
@@ -75,21 +74,6 @@ public class DAO {
         }
         return null;
     }
-    public Video thongtinvideoAdmin(String IDVIDEO){
-        Cursor tro = db.Get("SELECT * FROM BANPHU WHERE IDVIDEO = '" + IDVIDEO + "'");
-        while (tro.moveToNext()){
-            return new Video(
-                    tro.getString(0),
-                    tro.getString(1),
-                    tro.getString(2),
-                    tro.getString(3),
-                    tro.getString(4),
-                    tro.getString(5),
-                    tro.getString(6)
-            );
-        }
-        return null;
-    }
 
     // region Lưu video
     public boolean isTonTaiLuuVideo(int IDTK,String IDVD){
@@ -114,9 +98,7 @@ public class DAO {
                     tro.getString(6),
                     tro.getInt(7),
                     tro.getInt(8),
-                    tro.getInt(9)
-
-            ));
+                    tro.getInt(9)));
         }
         return list;
     }
@@ -135,34 +117,9 @@ public class DAO {
                     tro.getString(6),
                     tro.getInt(7),
                     tro.getInt(8),
-                    tro.getInt(9)
-
-            ));
+                    tro.getInt(9)));
         }
         return list;
-    }
-    public ArrayList<Video> TIMKIEM(){
-        ArrayList<Video> doAnArrayList = new ArrayList<>();
-        String truyvan = "SELECT * FROM VIDEO ";
-        Cursor tro = database.rawQuery(truyvan, null);
-        if (tro.getCount() != 0) {
-            while (tro.moveToNext()){
-                doAnArrayList.add(new Video(
-                        tro.getString(0),
-                        tro.getString(1),
-                        tro.getString(2),
-                        tro.getString(3),
-                        tro.getString(4),
-                        tro.getString(5),
-                        tro.getString(6),
-                        tro.getInt(7),
-                        tro.getInt(8),
-                        tro.getInt(9)
-                ));
-            }
-            return doAnArrayList;
-        }
-        return doAnArrayList;
     }
 
     public void Luuvideo(int IDTK,String IDVD)
@@ -192,8 +149,7 @@ public class DAO {
                     tro.getString(6),
                     tro.getInt(7),
                     tro.getInt(8),
-                    tro.getInt(9)
-            ));
+                    tro.getInt(9)));
         }
         return list;
     }
@@ -228,11 +184,8 @@ public class DAO {
     }
 
     public TaiKhoan Load(int IDTK){
-
         Cursor tro = db.Get("SELECT * FROM TAIKHOAN WHERE IDTK = " + IDTK);
-
         while (tro.moveToNext()){
-
             return new TaiKhoan(tro.getInt(0),
                     tro.getString(1),
                     tro.getString(2),
@@ -253,6 +206,7 @@ public class DAO {
         return cursor.getInt(0);
 
     }
+
     public int isDaLike(String IDVIDEO, int IDTK){
         Cursor cursor = db.Get("SELECT TT FROM TRANGTHAI WHERE IDVD = '" + IDVIDEO + "' AND IDTK = " + IDTK );
         while (cursor.moveToNext()){
@@ -282,6 +236,7 @@ public class DAO {
         db.Query("UPDATE VIDEO SET LUOTXEM = LUOTXEM + " + 1 + " WHERE IDVD = '" + IDVIDEO + "'");
 
     }
+
     public void them(String IDVIDEO, int IDTK, int THICH){
         if(THICH == 1){
             db.Query("UPDATE VIDEO SET THICH = THICH + " + 1 + " WHERE IDVD = '" + IDVIDEO + "'");
@@ -294,6 +249,7 @@ public class DAO {
         db.Query("INSERT INTO TRANGTHAI( IDVD, IDTK, TT) VALUES ('" +
                 IDVIDEO + "'," + IDTK + " , " + THICH + ")");
     }
+
     public void xoathem(String IDVIDEO, int IDTK, int THICH){
         if(THICH == 1){
             db.Query("UPDATE VIDEO SET THICH = THICH - " + 1 + " WHERE IDVD = '" + IDVIDEO + "'");
@@ -305,18 +261,7 @@ public class DAO {
 
         db.Query("DELETE FROM TRANGTHAI WHERE IDVD = '" + IDVIDEO + "' AND IDTK = " + IDTK);
     }
-//    public void notdislike(String IDVIDEO, int IDTK){
-//        db.Query("INSERT INTO VIDEO( IDVD, KHONGTHICH) VALUES ('" +
-//                IDVIDEO + "'," + 0 + ")");
-//        db.Query("INSERT INTO TRANGTHAI( IDVD, IDTK, TT) VALUES ('" +
-//                IDVIDEO + "'," + IDTK + " , " + 0 + ")");
-//    }
 
-    public void tanglike(String IDVIDEO, int IDTK,int Thich){
-        db.Query("UPDATE TRANGTHAI SET THICH = THICH " + 1);
-        db.Query("INSERT INTO TRANGTHAI( IDVD, IDTK, TT) VALUES ('" +
-                IDVIDEO + "'," + IDTK + " , " + 1 + ")");
-    }
 
     public boolean isTonTaiVideo(String IDVIDEO){
         Cursor tro = db.Get("SELECT * FROM VIDEO WHERE IDVD = '" + IDVIDEO + "'");
@@ -325,6 +270,7 @@ public class DAO {
         }
         return false;
     }
+
     public boolean isTonTaiVideoAdmin(String IDVIDEO){
         Cursor tro = db.Get("SELECT * FROM BANPHU WHERE IDVIDEO = '" + IDVIDEO + "'");
         while (tro.moveToNext()){
@@ -332,53 +278,34 @@ public class DAO {
         }
         return false;
     }
+
     public void TaoVideo(String IDVIDEO,String BACKGROUND,String THELOAI, String TIEUDE, String NOIDUNG, String TACGIA){
 
         db.Query("INSERT INTO VIDEO(IDVD, BACKGROUND, THOIGIANLOAD, THELOAI, TIEUDE, NOIDUNG, TACGIA, LUOTXEM, THICH, KHONGTHICH) VALUES ('" +
                 IDVIDEO + "','" + BACKGROUND + "','" + Calendar.getInstance().getTime().toString() + "','" +  THELOAI + "','" + TIEUDE + "','" +  NOIDUNG
                 + "','" + TACGIA + "'," + 0 + "," + 0 + "," + 0 +  " )");
     }
-    public void TaoVideoAdmin(String IDVIDEO,String BACKGROUND,String THELOAI, String TIEUDE, String NOIDUNG, String TACGIA){
 
+    public void TaoVideoAdmin(String IDVIDEO,String BACKGROUND,String THELOAI, String TIEUDE, String NOIDUNG, String TACGIA){
         db.Query("INSERT INTO BANPHU (IDVIDEO, BACKGROUP, THOIGIANLOAD, THELOAI, TIEUDE, NOIDUNG, TACGIA) VALUES ('" +
                 IDVIDEO + "','" + BACKGROUND + "','" + Calendar.getInstance().getTime().toString() + "','" +  THELOAI + "','" + TIEUDE + "','" +  NOIDUNG
                 + "','" + TACGIA + "' )");
     }
+
     public void XoaVideoAdmin(String IDVD){
         db.Query("DELETE FROM BANPHU WHERE IDVIDEO = '" + IDVD + "'");
     }
+
     public void XoaVideoALL(){
         db.Query("DELETE FROM BANPHU ");
     }
+
     public boolean isBP(){
         Cursor tro = db.Get("SELECT * FROM BANPHU ");
         while (tro.moveToNext()){
             return true;
         }
         return false;
-    }
-
-
-
-
-    public ArrayList<Video> VideoTheoDanhMuc(String DanhMuc){
-        ArrayList<Video> list = new ArrayList<>();
-        Cursor tro = db.Get("SELECT * FROM VIDEO WHERE THELOAI");
-        while(tro.moveToNext()){
-            list.add(new Video(
-                    tro.getString(0),
-                    tro.getString(1),
-                    tro.getString(2),
-                    tro.getString(3),
-                    tro.getString(4),
-                    tro.getString(5),
-                    tro.getString(6),
-                    tro.getInt(7),
-                    tro.getInt(8),
-                    tro.getInt(9)
-            ));
-        }
-        return list;
     }
     // endregion
 
@@ -420,17 +347,7 @@ public class DAO {
     public TaiKhoan DangNhap(String SDT, String MATKHAU){
 
         Cursor tro = db.Get("SELECT * FROM TAIKHOAN WHERE SDT = '" + SDT + "' AND MATKHAU = '" + MATKHAU + "'");
-
         while (tro.moveToNext()){
-//            Log.e(" test ",
-//                    tro.getString(1)+
-//                            tro.getString(2)+
-//                            tro.getString(3)+
-//                            tro.getString(4)+
-//                            tro.getString(5)+
-//                            tro.getBlob(6)+
-//                            tro.getString(7)+
-//                            tro.getString(8));
             return new TaiKhoan(tro.getInt(0),
                     tro.getString(1),
                     tro.getString(2),
@@ -439,8 +356,7 @@ public class DAO {
                     tro.getString(5),
                     tro.getBlob(6),
                     tro.getString(7),
-                    tro.getString(8)
-                    );
+                    tro.getString(8));
         }
         return null;
     }

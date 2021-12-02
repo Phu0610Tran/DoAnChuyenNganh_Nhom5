@@ -2,7 +2,6 @@ package com.example.doanchuyennganh_nhom5.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,24 +9,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.doanchuyennganh_nhom5.DataBase.DAO;
 import com.example.doanchuyennganh_nhom5.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 public class DangKy extends AppCompatActivity {
     public static final String TAG = DangKy.class.getSimpleName();
     private EditText edtmail, edtPassWord, edtPhone, edtNhaplaipassword;
@@ -39,11 +25,11 @@ public class DangKy extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dangky);
-        addControls();
-        addEvents();
+        AnhXa();
+        SuKien();
 
     }
-    private void addEvents() {
+    private void SuKien() {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,10 +37,10 @@ public class DangKy extends AppCompatActivity {
                 String mk = edtPassWord.getText().toString().trim();
                 String sdt = edtPhone.getText().toString().trim();
                 String nlmatkhau = edtNhaplaipassword.getText().toString().trim();
-                if (edtPhone.getText().length() != 0 && edtPassWord.getText().length() != 012
+                if (edtPhone.getText().length() != 0 && edtPassWord.getText().length() != 0
                         && edtNhaplaipassword.getText().length() != 0 && edtmail.getText().length() != 0){
 
-                    if(sdt.length() < 10 || sdt.length() > 10){
+                    if(sdt.length() != 10){
                         Toast.makeText(DangKy.this, "Vui lòng kiểm tra số điện thoại", Toast.LENGTH_SHORT).show();
                     }else if(!(mk.equals(nlmatkhau))){
                         Toast.makeText(DangKy.this, "Vui lòng kiểm tra lại mật khẩu", Toast.LENGTH_SHORT).show();
@@ -86,6 +72,7 @@ public class DangKy extends AppCompatActivity {
                 }
             }
         });
+
         imgquaylai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +80,8 @@ public class DangKy extends AppCompatActivity {
             }
         });
     }
-    private void addControls() {
+
+    private void AnhXa() {
         dao =  new DAO(DangKy.this);
         edtmail = (EditText) findViewById(R.id.edt_email_dk);
         edtPassWord = (EditText) findViewById(R.id.edt_matkhau_dk);

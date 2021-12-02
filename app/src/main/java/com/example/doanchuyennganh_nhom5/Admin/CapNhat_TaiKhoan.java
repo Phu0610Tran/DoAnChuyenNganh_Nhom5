@@ -40,7 +40,7 @@ public class CapNhat_TaiKhoan extends AppCompatActivity {
     Button btncapnhat_qltk;
     CircleImageView img_hinhanh_qltk;
     DAO dao;
-    //    private Account account;
+
     private boolean isEnabled;
     final int REQUEST_CODE_CAMERA=123;
     final int REQUEST_CODE_FOLDER=456;
@@ -87,6 +87,7 @@ public class CapNhat_TaiKhoan extends AppCompatActivity {
 
     private void AnhXa() {
         dao = new DAO(this);
+
         img_hinhanh_qltk = findViewById(R.id.img_user_ql_taikhoan);
         edtidtk_qltk = findViewById(R.id.edt_idtk_ql_taikhoan);
         edtsodienthoai_qltk = findViewById(R.id.edt_sodienthoai_ql_taikhoan);

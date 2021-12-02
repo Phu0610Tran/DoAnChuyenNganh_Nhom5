@@ -9,16 +9,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
+
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -37,19 +37,18 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-// import com.example.doanchuyennganh_nhom5.d.Account;
+
 
 public class CapNhat extends AppCompatActivity implements View.OnFocusChangeListener{
 
-    EditText edthoten, edtngaythangnamsinh, edtgioitinh, edtsodienthoai, edtmail;
+    EditText edthoten, edtngaythangnamsinh, edtsodienthoai, edtmail;
     Button btncapnhat;
     CircleImageView img_hinhanh;
     DAO dao;
     ImageView quaylai_cn;
-    //    private Account account;
     private boolean isEnabled;
     Button btndoimatkhau;
-    ImageButton ibtn_Camera,ibtn_Folder;
+
     final int REQUEST_CODE_CAMERA=123;
     final int REQUEST_CODE_FOLDER=456;
 
@@ -59,28 +58,8 @@ public class CapNhat extends AppCompatActivity implements View.OnFocusChangeList
         setContentView(R.layout.activity_capnhat);
 
         AnhXa();
-
         Getdata();
-
-        btndoimatkhau.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showdialog();
-            }
-        });
-        quaylai_cn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        edtngaythangnamsinh.setOnFocusChangeListener(this);
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+        SuKien();
     }
 
     private void Getdata() {
@@ -171,29 +150,27 @@ public class CapNhat extends AppCompatActivity implements View.OnFocusChangeList
                 return true;
             default:
                 return super.onContextItemSelected(item);
-
-
         }
     }
 
-    private void AnhXa() {
-        dao = new DAO(CapNhat.this);
-        quaylai_cn = findViewById(R.id.quaylai_cn);
-        edthoten = (EditText) findViewById(R.id.edt_hovaten_cn);
-        edtngaythangnamsinh = (EditText) findViewById(R.id.edt_ngaythangnamsinh_cn);
-        edtsodienthoai = (EditText) findViewById(R.id.edt_sodienthoai_cn);
-        edtmail = (EditText) findViewById(R.id.edt_mail_cn);
-        img_hinhanh = findViewById(R.id.img_user_cn);
-        btncapnhat = (Button) findViewById(R.id.btn_capnhat_cn);
-        btndoimatkhau = (Button) findViewById(R.id.btn_doimatkhau_cn);
+    private void SuKien() {
+
+        btndoimatkhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showdialog();
+            }
+        });
+
+        quaylai_cn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        edtngaythangnamsinh.setOnFocusChangeListener(this);
 
 
-        edthoten.setText(Home.taiKhoan.getHovaTen());
-        edtsodienthoai.setText(Home.taiKhoan.getSDT());
-        edtmail.setText(Home.taiKhoan.getMaill());
-        enableControl();
-
-        registerForContextMenu(img_hinhanh);
         img_hinhanh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,6 +204,27 @@ public class CapNhat extends AppCompatActivity implements View.OnFocusChangeList
                 }
             }
         });
+
+    }
+
+    private void AnhXa() {
+        dao = new DAO(CapNhat.this);
+        quaylai_cn = findViewById(R.id.quaylai_cn);
+        edthoten = (EditText) findViewById(R.id.edt_hovaten_cn);
+        edtngaythangnamsinh = (EditText) findViewById(R.id.edt_ngaythangnamsinh_cn);
+        edtsodienthoai = (EditText) findViewById(R.id.edt_sodienthoai_cn);
+        edtmail = (EditText) findViewById(R.id.edt_mail_cn);
+        img_hinhanh = findViewById(R.id.img_user_cn);
+        btncapnhat = (Button) findViewById(R.id.btn_capnhat_cn);
+        btndoimatkhau = (Button) findViewById(R.id.btn_doimatkhau_cn);
+
+        edthoten.setText(Home.taiKhoan.getHovaTen());
+        edtsodienthoai.setText(Home.taiKhoan.getSDT());
+        edtmail.setText(Home.taiKhoan.getMaill());
+        enableControl();
+
+        registerForContextMenu(img_hinhanh);
+
     }
 
     @Override

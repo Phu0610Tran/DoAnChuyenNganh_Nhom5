@@ -41,31 +41,27 @@ import java.util.regex.Pattern;
 public class Them_Video extends AppCompatActivity {
     Spinner spnTheloai;
     CategoryAdapter categoryAdapter;
-    ArrayList<Category> listCategory;
-    private boolean isEnabled;
     EditText edtMavideo, edtHinhnen, edtTieude, edtNoidung, edtTacgia;
     ImageButton ibtnQuatrai, ibtnQuaphai;
     ImageView HinhVideo;
     Button btnThem, btnHuy, btnGuilink;
-    String URL_LIST = "https://www.youtube.com/playlist?list=PLiJQ-xWoNAYvy82qhU2Mjptq3F8hvOoUI";
-    String URL_VIDEO = "https://www.youtube.com/watch?v=DMkzIOLppf4";
     DAO dao;
     String theloai;
 
-
-    String URL = "https://www.googleapis.com/youtube/v3/videos?id=DMkzIOLppf4&part=snippet&key=AIzaSyCfbNBRWnZmFFQxpLjtGYxN8W97YRjui8U";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_video);
 
         AnhXa();
-        enableControl();
-        spnTheloai = findViewById(R.id.spnAddTheloai);
-        listCategory = getListCategory();
-        dao = new DAO(Them_Video.this);
-        categoryAdapter = new CategoryAdapter(Them_Video.this, R.layout.item_selected, listCategory);
+
+        categoryAdapter = new CategoryAdapter(Them_Video.this, R.layout.item_selected, getListCategory());
         spnTheloai.setAdapter(categoryAdapter);
+
+        SuKien();
+    }
+
+    private void SuKien() {
         spnTheloai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -78,21 +74,23 @@ public class Them_Video extends AppCompatActivity {
 
             }
         });
+
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
+
         btnGuilink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //XuLy(URL_LIST);
                 if(edtMavideo.getText().length() !=0){
                     XuLy(edtMavideo.getText().toString());
                 }
             }
         });
+
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,18 +102,14 @@ public class Them_Video extends AppCompatActivity {
                     dao.TaoVideo(edtMavideo.getText().toString(),edtHinhnen.getText().toString(),theloai,edtTieude.getText().toString(),
                             edtNoidung.getText().toString(),edtTacgia.getText().toString());
                 }
-
-
-
             }
         });
-
     }
 
     void XuLy(String link){
         boolean isMatches_List,isMatches_aVideo;
-        isMatches_List = link.matches( "https:\\/\\/www\\.youtube\\.com\\/playlist\\?list=(.{34})");//Pattern.compile().matcher(link).matches();
-        isMatches_aVideo = link.matches("https:\\/\\/www\\.youtube\\.com\\/watch\\?v=(.{11})");// Pattern.compile().matcher(link).matches();
+        isMatches_List = link.matches( "https:\\/\\/www\\.youtube\\.com\\/playlist\\?list=(.{34})$");//Pattern.compile().matcher(link).matches();
+        isMatches_aVideo = link.matches("https:\\/\\/www\\.youtube\\.com\\/watch\\?v=(.{11})$");// Pattern.compile().matcher(link).matches();
         String [] arr;
         if(isMatches_List){
             arr = link.split("list=");
@@ -128,21 +122,18 @@ public class Them_Video extends AppCompatActivity {
         else if (isMatches_aVideo){
             arr = link.split("v=");
             GetJsonYouTubeALONE(Home.URL_GETJSONALONE+ arr[1] + Home.KET_API_ALONE);
-//            Toast.makeText(Them_Video.this, "A video = " + arr[1], Toast.LENGTH_SHORT).show();
-
         }
         else {
             Toast.makeText(Them_Video.this, "Vui lòng gán đúng đường dẫn", Toast.LENGTH_SHORT).show();
         }
     }
-    //------------------------them video
+
     private void GetJsonYouTubeALONE(String url){
         RequestQueue requestQueue = Volley.newRequestQueue(Them_Video.this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Log.e("d","d");
                     JSONArray jsonItems = response.getJSONArray("items");
                     String title = ""; String url = ""; String idVideo=""; String description="";String videoOwnerChannelTitle="";
                     for (int i = 0; i < jsonItems.length(); i++)
@@ -157,8 +148,7 @@ public class Them_Video extends AppCompatActivity {
                         JSONObject jsonThumbnail = jsonSnippet.getJSONObject("thumbnails");
                         JSONObject jsonMedium = jsonThumbnail.getJSONObject("medium");
                         url = jsonMedium.getString("url");
-                        Log.e("Thong Tin ", " Thông tin  = " +  idVideo + " , " + title + " , " + description + " , " + videoOwnerChannelTitle
-                                + " , " + url);
+
                         edtMavideo.setText(idVideo);
                         edtHinhnen.setText(url);
                         edtTieude.setText(title);
@@ -177,7 +167,7 @@ public class Them_Video extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Them_Video.this, "ssssssssss", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Them_Video.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }
         }
         );
@@ -187,6 +177,9 @@ public class Them_Video extends AppCompatActivity {
 
 
     private void AnhXa() {
+        dao = new DAO(Them_Video.this);
+
+        spnTheloai = findViewById(R.id.spnAddTheloai);
         edtMavideo = findViewById(R.id.edtAddMavideo);
         edtHinhnen = findViewById(R.id.edtAddHinhdaidien);
         edtTieude = findViewById(R.id.edtAddTieude);
@@ -198,10 +191,6 @@ public class Them_Video extends AppCompatActivity {
         ibtnQuaphai = findViewById(R.id.ibtnQuaPhai);
         btnGuilink = findViewById(R.id.btnGuilink);
         HinhVideo = findViewById(R.id.HinhVideo);
-    }
-
-    private void enableControl() {
-
     }
 
     private ArrayList<Category> getListCategory() {

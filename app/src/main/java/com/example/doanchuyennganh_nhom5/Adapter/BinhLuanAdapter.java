@@ -54,6 +54,7 @@ public class BinhLuanAdapter extends RecyclerView.Adapter<BinhLuanAdapter.viewho
     public class viewholder extends RecyclerView.ViewHolder{
         CircleImageView img_Hinh_binhluan;
         TextView txt_NoiDung_binhluan,txtV_ThoiGian_binhluan;
+
         public viewholder(@NonNull View itemView) {
             super(itemView);
             img_Hinh_binhluan = itemView.findViewById(R.id.img_Hinh_chatbox);

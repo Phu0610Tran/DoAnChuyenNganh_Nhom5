@@ -31,6 +31,7 @@ import java.util.ArrayList;
 public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucHolder> {
     ArrayList<DanhMuc> ListCategory;
     Context context;
+
     public DanhMucAdapter(Context context, ArrayList<DanhMuc> listCategory) {
         ListCategory = listCategory;
         this.context = context;
@@ -50,11 +51,7 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
 
         VideoAdapter videoAdapter = new VideoAdapter(context,listVideo);
         videoAdapter.setContext(context);
-//        Log.e("Errỏ",Home.URL_GETJSON + ListCategory.get(position).getKEY_LISTVIDEO() + Home.KEY_API);
-//        Log.e(" test ", ListCategory.get(position).getKEY_LISTVIDEO());
-        GetJsonYouTube(Home.URL_GETJSON + ListCategory.get(position).getKEY_LISTVIDEO() + Home.KEY_API,videoAdapter);
 
-        Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
         holder.txt_TieuDeDM.setText(tieude);
         holder.rec_DSVideo.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.rec_DSVideo.setAdapter(videoAdapter);
@@ -66,49 +63,11 @@ public class DanhMucAdapter extends RecyclerView.Adapter<DanhMucAdapter.DanhMucH
         }
         return 0;
     }
-    private void GetJsonYouTube(String url, VideoAdapter videoAdapter){
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    Log.e("d","d");
-                    JSONArray jsonItems = response.getJSONArray("items");
-                    String title = ""; String url = ""; String idVideo=""; String description="";String videoOwnerChannelTitle="";
-                    ArrayList<Video> videoYouTubeArrayList = new ArrayList<>();
-                    for (int i = 0; i < jsonItems.length(); i++)
-                    {
-                        JSONObject jsonItem = jsonItems.getJSONObject(i);
-                        JSONObject jsonSnippet = jsonItem.getJSONObject("snippet");
-                        title = jsonSnippet.getString("title");
-                        description = jsonSnippet.getString("description");
-                        videoOwnerChannelTitle = jsonSnippet.getString("videoOwnerChannelTitle");
-                        JSONObject jsonThumbnail = jsonSnippet.getJSONObject("thumbnails");
-                        JSONObject jsonMedium = jsonThumbnail.getJSONObject("medium");
-                        url = jsonMedium.getString("url");
-                        JSONObject jsonResourceID = jsonSnippet.getJSONObject("resourceId");
-                        idVideo = jsonResourceID.getString("videoId");
-                        Log.e("T", title);
-                        videoYouTubeArrayList.add( new Video(idVideo, url, title, description, videoOwnerChannelTitle ));
-                    }
-                    videoAdapter.setListVideo(videoYouTubeArrayList);
-                    videoAdapter.notifyDataSetChanged();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-            }
-        }
-        );
-        requestQueue.add(jsonObjectRequest);
-    }
     public class DanhMucHolder extends RecyclerView.ViewHolder{
         TextView txt_TieuDeDM,txt_XemThem;
         RecyclerView rec_DSVideo;
+
         public DanhMucHolder(@NonNull View itemView) {
             super(itemView);
             txt_TieuDeDM = itemView.findViewById(R.id.txt_TieuDeDM);

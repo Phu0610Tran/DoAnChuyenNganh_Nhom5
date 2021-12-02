@@ -51,21 +51,17 @@ public class QL_Video extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ql_video);
 
-        dao = new DAO(this);
-        spn_Qlvideo = findViewById(R.id.spn_qlvideo);
-        recV_DanhSachVIDEO = findViewById(R.id.recV_DanhSachVIDEO);
+        AnhXa();
 
         listCategory = getListCategort();
         categoryDAO = new CategoryAdapter(QL_Video.this, R.layout.item_selected, listCategory);
         spn_Qlvideo.setAdapter(categoryDAO);
         registerForContextMenu(recV_DanhSachVIDEO);
 
-
         listVD = new ArrayList<>();
         adapter = new QLVideoAdapter(this,listVD);
         spn_Qlvideo.setSelection(0);
         Load();
-
 
         recV_DanhSachVIDEO.setLayoutManager( new LinearLayoutManager(QL_Video.this,LinearLayoutManager.VERTICAL,false));
         recV_DanhSachVIDEO.setAdapter(adapter);
@@ -81,14 +77,20 @@ public class QL_Video extends AppCompatActivity {
             }
         });
 
-        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed(); // Implemented by activity
+                onBackPressed();
             }
         });
+    }
+
+    private void AnhXa() {
+        dao = new DAO(this);
+        spn_Qlvideo = findViewById(R.id.spn_qlvideo);
+        recV_DanhSachVIDEO = findViewById(R.id.recV_DanhSachVIDEO);
+        toolbar = findViewById(R.id.toolbar);
     }
 
     @Override
@@ -167,8 +169,6 @@ public class QL_Video extends AppCompatActivity {
         builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                // Do nothing
                 dialog.dismiss();
             }
         });

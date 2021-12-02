@@ -14,8 +14,6 @@ public class DB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        String sanpham = "CREATE TABLE TAIKHOAN(ID TEXT)";
-//        db.execSQL(sanpham);
     }
     public SQLiteDatabase open(){
         return this.getWritableDatabase();

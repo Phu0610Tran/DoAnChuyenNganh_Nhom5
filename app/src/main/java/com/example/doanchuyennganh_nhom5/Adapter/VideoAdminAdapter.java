@@ -31,8 +31,8 @@ public class VideoAdminAdapter extends RecyclerView.Adapter<VideoAdminAdapter.Vi
     private Context context;
     View v;
     DAO dao;
-    public VideoAdminAdapter() {
-    }
+
+    public VideoAdminAdapter() { }
 
     public VideoAdminAdapter(Context context, ArrayList<Video> listVideo) {
         this.ListVideo = listVideo;
@@ -44,8 +44,6 @@ public class VideoAdminAdapter extends RecyclerView.Adapter<VideoAdminAdapter.Vi
     @Override
     public VideoAdminAdapter.VideoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         v = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_listvideoadmin, null);
-
-
         return new VideoAdminAdapter.VideoHolder(v);
     }
 
@@ -54,9 +52,7 @@ public class VideoAdminAdapter extends RecyclerView.Adapter<VideoAdminAdapter.Vi
         Video video = ListVideo.get(position);
         int vitri = position;
         holder.txt_TieuDeVideo.setText(video.getTieuDeVD());
-        Log.e("tieu de ",video.getTieuDeVD() );
 
-        // thêm dữ liệu vào BanPhu
         for (int i=0;i < ListVideo.size();i++){
             Video vo = ListVideo.get(i);
             if(dao.isTonTaiVideoAdmin(vo.getIDVD()) == false){
@@ -87,9 +83,7 @@ public class VideoAdminAdapter extends RecyclerView.Adapter<VideoAdminAdapter.Vi
                 else {
 
                     Toast.makeText(context, " Video đã tồn tại " , Toast.LENGTH_SHORT).show();
-
                 }
-
             }
         });
     }

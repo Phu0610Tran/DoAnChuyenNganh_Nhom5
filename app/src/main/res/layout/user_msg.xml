@@ -15,7 +15,6 @@
         android:layout_gravity="left"
         android:orientation="horizontal">
 
-        <!--text view for displaying user message-->
         <TextView
             android:id="@+id/idTVUser"
             android:layout_width="match_parent"
@@ -26,12 +25,13 @@
             android:text="User message"
             android:textColor="@color/black" />
 
-        <!--we are displaying user icon-->
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_chat"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:src="@drawable/user" />
+            android:src="@drawable/user"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 

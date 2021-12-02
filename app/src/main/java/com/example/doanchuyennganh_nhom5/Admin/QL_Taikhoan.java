@@ -43,8 +43,7 @@ public class QL_Taikhoan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ql_taikhoan);
 
-        dao = new DAO(this);
-        recV_DanhSachTaiKhoan = findViewById(R.id.recV_DanhSachTaikhoan);
+        AnhXa();
         registerForContextMenu(recV_DanhSachTaiKhoan);
 
         listTaiKhoan = new ArrayList<>();
@@ -54,14 +53,19 @@ public class QL_Taikhoan extends AppCompatActivity {
         recV_DanhSachTaiKhoan.setLayoutManager( new LinearLayoutManager(QL_Taikhoan.this, LinearLayoutManager.VERTICAL,false));
         recV_DanhSachTaiKhoan.setAdapter(adapter);
 
-        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed(); // Implemented by activity
+                onBackPressed();
             }
         });
+    }
+
+    private void AnhXa() {
+        dao = new DAO(this);
+        recV_DanhSachTaiKhoan = findViewById(R.id.recV_DanhSachTaikhoan);
+        toolbar = findViewById(R.id.toolbar);
     }
 
     @Override
@@ -116,8 +120,6 @@ public class QL_Taikhoan extends AppCompatActivity {
         builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                // Do nothing
                 dialog.dismiss();
             }
         });

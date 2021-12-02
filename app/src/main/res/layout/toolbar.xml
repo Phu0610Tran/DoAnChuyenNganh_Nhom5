@@ -22,35 +22,6 @@
             app:layout_anchorGravity="center"
             app:navigationIcon="?attr/actionModeCloseDrawable">
 
-            <!--            <ImageView-->
-            <!--                android:id="@+id/imgExitt"-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:layout_gravity="left"-->
-            <!--                android:layout_marginRight="15dp"-->
-            <!--                app:srcCompat="?attr/actionModeCloseDrawable" />-->
-
-
-            <!--            <ImageView-->
-            <!--                android:id="@+id/imgThemtaikhoan"-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:layout_gravity="right"-->
-            <!--                android:layout_marginRight="15dp"-->
-            <!--                android:src="@android:drawable/ic_input_add" />-->
-
-            <!--            <ImageView-->
-            <!--                android:id="@+id/imgThongBao"-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:layout_gravity="right"-->
-            <!--                android:layout_marginRight="15dp"-->
-            <!--                app:srcCompat="@drawable/ic_baseline_search_24" />-->
-
         </androidx.appcompat.widget.Toolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
-
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

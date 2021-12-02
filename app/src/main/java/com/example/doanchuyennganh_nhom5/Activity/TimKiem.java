@@ -38,25 +38,24 @@ public class TimKiem extends AppCompatActivity {
     ArrayList<Video> videoArrayList;
     DAO dao;
     TimKiemAdapter adapter;
-    //----------------------voice-----------
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
 
-    ImageButton voiceBtn;
-    //----------------------voice-----------
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tim_kiem);
-        dao = new DAO(this);
         Anhxa();
-        rcv_TK = (RecyclerView) findViewById(R.id.rcv_TK);
+
         videoArrayList = new ArrayList<>();
         adapter = new TimKiemAdapter(TimKiem.this, videoArrayList);
         rcv_TK.setAdapter(adapter);
         rcv_TK.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
+        SuKien();
+    }
 
-
+    private void SuKien() {
         edt_tk.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -73,6 +72,7 @@ public class TimKiem extends AppCompatActivity {
 
             }
         });
+
         img_voice_Tk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +102,7 @@ public class TimKiem extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged();
     }
+
     private void GetData(String ten) {
         Cursor cursor = dao.Getdata(ten);
         videoArrayList.clear();
@@ -133,6 +134,7 @@ public class TimKiem extends AppCompatActivity {
         }
         return null;
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -147,13 +149,12 @@ public class TimKiem extends AppCompatActivity {
             }
         }
     }
+
     private void Anhxa() {
+        dao = new DAO(this);
+        rcv_TK = findViewById(R.id.rcv_TK);
         edt_tk = findViewById(R.id.edt_tk);
         img_search_Tk = findViewById(R.id.img_search_Tk);
         img_voice_Tk = findViewById(R.id.img_voice_Tk);
     }
-
-
-    //-----------------------------------------------------------------
-
 }

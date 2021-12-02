@@ -26,21 +26,18 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoHolder>
     private Context context;
     View v;
     DAO dao;
-    public VideoAdapter() {
-    }
+
+    public VideoAdapter() { }
 
     public VideoAdapter(Context context, ArrayList<Video> listVideo) {
         this.ListVideo = listVideo;
         this.context = context;
-
     }
 
     @NonNull
     @Override
     public VideoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         v = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_video, null);
-
-
         return new VideoHolder(v);
     }
 
@@ -48,33 +45,16 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoHolder>
     public void onBindViewHolder(@NonNull VideoHolder holder, int position) {
         Video video = ListVideo.get(position);
 
-//        byte[] hinhVideo = video.getHinh_VIDEO();
-//        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhVideo,0,hinhVideo.length);
-
         holder.txt_TieuDeVideo.setText(video.getTieuDeVD());
-        //holder.img_HinhVideo.setImageURI(video.getHinh_VIDEO());
 
-
-//        for (int i=0;i < ListVideo.size();i++){
-//            Video vo = ListVideo.get(i);
-//            if(dao.isTonTaiVideo(vo.getIDVD()) == false){
-//
-//                dao.TaoVideo(vo.getIDVD(), vo.getHinhVD(), vo.getTHELOAI(), vo.getTieuDeVD().replaceAll("'","''"), vo.getNoiDungVD().replaceAll("'","''"), vo.getTacGia());
-//            }
-//        }
         Picasso.with(context).load(video.getHinhVD())
                 .placeholder(R.drawable.logodt)
                 .error(R.drawable.logodt).into(holder.img_HinhVideo);
-
-
-        Log.e("Tdm",video.getIDVD());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PlayvideoActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("Video", video);
                 intent.putExtra("ID_VIDEO",video.getIDVD());
                 dao.luotxem(video.getIDVD());
                 context.startActivity(intent);

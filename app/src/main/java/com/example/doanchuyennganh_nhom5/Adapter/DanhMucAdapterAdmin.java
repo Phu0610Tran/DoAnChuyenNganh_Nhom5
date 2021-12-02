@@ -38,29 +38,32 @@ public class DanhMucAdapterAdmin extends RecyclerView.Adapter<DanhMucAdapterAdmi
     ArrayList<DanhMuc> ListCategory, ListCategoryOLD;
     Context context;
     DAO dao;
+
     public DanhMucAdapterAdmin(Context context, ArrayList<DanhMuc> listCategory) {
         ListCategory = listCategory;
         ListCategoryOLD= listCategory;
         this.context = context;
     }
+
     @NonNull
     @Override
     public DanhMucAdapterAdmin.DanhMucHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_listvideo, null);
         return new DanhMucAdapterAdmin.DanhMucHolder(v);
     }
+
     @Override
     public void onBindViewHolder(@NonNull DanhMucAdapterAdmin.DanhMucHolder holder, int position) {
         String tieude = ListCategory.get(position).getTen_DanhMuc();
         VideoAdminAdapter videoAdminAdapter = new VideoAdminAdapter();
         videoAdminAdapter.setContext(context);
 
-
         GetJsonYouTube(Home.URL_GETJSON + ListCategory.get(position).getKEY_LISTVIDEO() + Home.KEY_API,videoAdminAdapter);
         Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
         holder.txt_TieuDeDM.setText(tieude);
         holder.rec_DSVideo.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         holder.rec_DSVideo.setAdapter(videoAdminAdapter);
+
         holder.btn_listvideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +114,6 @@ public class DanhMucAdapterAdmin extends RecyclerView.Adapter<DanhMucAdapterAdmi
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Log.e("d","d");
                     JSONArray jsonItems = response.getJSONArray("items");
                     String title = ""; String url = ""; String idVideo=""; String description="";String videoOwnerChannelTitle="";
                     ArrayList<Video> videoYouTubeArrayList = new ArrayList<>();
@@ -119,16 +121,18 @@ public class DanhMucAdapterAdmin extends RecyclerView.Adapter<DanhMucAdapterAdmi
                     {
                         JSONObject jsonItem = jsonItems.getJSONObject(i);
                         JSONObject jsonSnippet = jsonItem.getJSONObject("snippet");
+
                         title = jsonSnippet.getString("title");
                         description = jsonSnippet.getString("description");
                         videoOwnerChannelTitle = jsonSnippet.getString("videoOwnerChannelTitle");
                         JSONObject jsonThumbnail = jsonSnippet.getJSONObject("thumbnails");
+
                         JSONObject jsonMedium = jsonThumbnail.getJSONObject("medium");
                         url = jsonMedium.getString("url");
+
                         JSONObject jsonResourceID = jsonSnippet.getJSONObject("resourceId");
                         idVideo = jsonResourceID.getString("videoId");
-                        Log.e("T", title);
-                        // lọc đi những video đã có
+
                         if (dao.isTonTaiVideo(idVideo)==false)
                         {
                             videoYouTubeArrayList.add( new Video(idVideo, url, title, description, videoOwnerChannelTitle ));
@@ -143,9 +147,7 @@ public class DanhMucAdapterAdmin extends RecyclerView.Adapter<DanhMucAdapterAdmi
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "ssssssssss", Toast.LENGTH_SHORT).show();
-            }
+            public void onErrorResponse(VolleyError error) { }
         }
         );
         requestQueue.add(jsonObjectRequest);
